@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\TheLoai;
+use App\Slide;
+use App\LoaiTin;
+use App\TinTuc;
+
+class PagesController extends Controller
+{
+    //Khởi tạo view share
+	function __construct(){
+		$theloai = TheLoai::all();
+		$slide = Slide::all();
+		view()->share('theloai', $theloai);
+		view()->share('slide', $slide);
+	}
+
+    public function getTrangChu()
+    {
+    	return view('pages.trangchu');
+    }
+
+    public function getLienHe()
+    {
+    	return view('pages.lienhe');
+    }
+
+    function getLoaiTin($id)
+    {
+        $loaitin = LoaiTin::find($id);
+        $tintuc = TinTuc::where('idLoaiTin', $id)->paginate(5);
+        return view('pages.loaitin', compact('loaitin', 'tintuc'));
+    }
+    function getTinTuc($id)
+    {
+        $tintuc = TinTuc::find($id);
+        $tinnoibat = TinTuc::where('NoiBat', 1)->take(4)->get();
+        $tinlienquan = TinTuc::where('idLoaiTin', $tintuc->idLoaiTin)->take(4)->get();
+
+        return view('pages.tintuc', compact('tintuc', 'tinnoibat', 'tinlienquan'));
+    }
+}
