@@ -63,6 +63,7 @@ Route::group(['prefix'=>'admin', 'middleware' => 'adminLogin'], function(){
 		Route::post('xoa/{id}', 'TinTucController@postXoa');
 	});
 
+	//Comment
 	Route::group(['prefix'=>'comment'], function(){
 		Route::get('xoa/{id}/{idTinTuc}', 'CommentController@getXoa');
 	});
@@ -104,8 +105,8 @@ Route::group(['prefix'=>'admin', 'middleware' => 'adminLogin'], function(){
 //Home pages, infor pages
 Route::get('trangchu', 'PagesController@getTrangChu');
 Route::get('lienhe', 'PagesController@getLienHe');
-Route::get('loaitin/{id}/{TenKhongDau}.html', 'PagesController@getLoaiTin');
-Route::get('tintuc/{id}/{TenKhongDau}.html', 'PagesController@getTinTuc');
+Route::get('loaitin/{id}/{TenKhongDau}', 'PagesController@getLoaiTin');
+Route::get('tintuc/{id}/{TenKhongDau}', 'PagesController@getTinTuc');
 
 
 //Login, logout admin
@@ -122,6 +123,9 @@ Route::get('dangxuat', 'UserController@getDangXuat');
 Route::get('dangky', 'UserController@getDangKy');
 Route::post('dangky', 'UserController@postDangKy');
 
-//Detal users
+//Detail users
 Route::get('thongtintk/{id}', 'UserController@getSuaTK');
 Route::post('thongtintk', 'UserController@postSuaTK');
+
+//Search
+Route::get('timkiem', 'PagesController@getTimKiem');
