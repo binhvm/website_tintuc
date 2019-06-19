@@ -25,6 +25,6 @@ class CommentController extends Controller
     	$comment->NoiDung = $request->NoiDung;
     	$comment->save();
 
-        return json_encode([$comment, $name]);
+        return json_encode(['comment' => $comment, 'name' => $name]);
     }
 }

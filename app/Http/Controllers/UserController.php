@@ -122,7 +122,7 @@ class UserController extends Controller
     public function getDangXuat()
     {
         Auth::logout();
-        return redirect('trangchu');
+        return redirect()->back();
     }
 
     //Register users

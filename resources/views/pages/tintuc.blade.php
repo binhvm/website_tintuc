@@ -144,8 +144,8 @@
                         $("#data-comment").append(
                             '<div class="media">'+
                                 '<div class="media-body list-comment">'+
-                                    '<h5 class="media-heading">'+data.idUser+":"+data.NoiDung+'</h5>'+
-                                    '<small>'+data.created_at+
+                                    '<h5 class="media-heading">'+data.name+": "+data.comment.NoiDung+'</h5>'+
+                                    '<small>'+data.comment.created_at+
                                     '</small>'+
                                 '</div>'+
                             '</div>'
