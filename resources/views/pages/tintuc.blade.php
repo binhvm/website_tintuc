@@ -31,6 +31,7 @@
                 <!-- Blog Comments -->
 
                 <!-- Comments Form -->
+                @if(Auth::check())
                 <div class="well">
                     <h5>Viết bình luận...<span class="glyphicon glyphicon-pencil"></span></h5>
                     <form role="form">
@@ -40,8 +41,8 @@
                         <button type="submit" class="btn btn-primary"> Gửi</button>
                     </form>
                 </div>
-
                 <hr>
+                @endif
 
                 <!-- Posted Comments -->
 
@@ -73,12 +74,12 @@
                         @foreach($tinlienquan as $tlq)
                         <div class="row" style="margin-top: 10px;">
                             <div class="col-md-5">
-                                <a href="tintuc/{{$tlq->id}}/{{$tlq->TieuDeKhongDau}}.html">
+                                <a href="tintuc/{{$tlq->id}}/{{$tlq->TieuDeKhongDau}}">
                                     <img class="img-responsive img-rounded" src="upload/tintuc/{{$tlq->Hinh}}" alt="">
                                 </a>
                             </div>
                             <div class="col-md-7">
-                                <a href="tintuc/{{$tlq->id}}/{{$tlq->TieuDeKhongDau}}.html"><b>{{$tlq->TieuDe}}</b></a>
+                                <a href="tintuc/{{$tlq->id}}/{{$tlq->TieuDeKhongDau}}"><b>{{$tlq->TieuDe}}</b></a>
                             </div>
                             <p style="padding: 10px">{{$tlq->TomTat}}</p>
                             <div class="break"></div>
@@ -96,12 +97,12 @@
                         @foreach($tinnoibat as $tnb)
                         <div class="row" style="margin-top: 10px;">
                             <div class="col-md-5">
-                                <a href="tintuc/{{$tnb->id}}/{{$tnb->TieuDeKhongDau}}.html">
+                                <a href="tintuc/{{$tnb->id}}/{{$tnb->TieuDeKhongDau}}">
                                     <img class="img-responsive img-rounded" src="upload/tintuc/{{$tnb->Hinh}}" alt="">
                                 </a>
                             </div>
                             <div class="col-md-7">
-                                <a href="tintuc/{{$tlq->id}}/{{$tlq->TieuDeKhongDau}}.html"><b>{{$tnb->TieuDe}}</b></a>
+                                <a href="tintuc/{{$tlq->id}}/{{$tlq->TieuDeKhongDau}}"><b>{{$tnb->TieuDe}}</b></a>
                             </div>
                             <p style="padding: 10px">{{$tnb->TomTat}}</p>
                             <div class="break"></div>

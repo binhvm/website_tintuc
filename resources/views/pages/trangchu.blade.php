@@ -27,7 +27,7 @@
 			                		<a href="category.html">{{$tl->Ten}}</a> | 	
 			                		@foreach($tl->loaitin as $lt)
 			                			@if(count($lt->tintuc) > 0)
-			                				<small><a href="loaitin/{{$lt->id}}/{{$lt->TenKhongDau}}.html"><i>{{$lt->Ten}}</i></a>/</small>
+			                				<small><a href="loaitin/{{$lt->id}}/{{$lt->TenKhongDau}}"><i>{{$lt->Ten}}</i></a>/</small>
 			                			@endif
 			                		@endforeach
 			                	</h3>
@@ -45,7 +45,7 @@
 				                    <div class="col-md-7">
 				                        <h3>{{$tin1['TieuDe']}}</h3>
 				                        <p>{{$tin1['TomTat']}}</p>
-				                        <a class="btn btn-primary" href="tintuc/{{$tin1['id']}}/{{$tin1['TieuDeKhongDau']}}.html">Chi tiết <span class="glyphicon glyphicon-chevron-right"></span></a>
+				                        <a class="btn btn-primary" href="tintuc/{{$tin1['id']}}/{{$tin1['TieuDeKhongDau']}}">Chi tiết <span class="glyphicon glyphicon-chevron-right"></span></a>
 									</div>
 
 			                	</div>
@@ -53,7 +53,7 @@
 
 								<div class="col-md-4">
 									@foreach($data->all() as $dt)
-									<a href="tintuc/{{$dt['id']}}/{{$dt['TieuDeKhongDau']}}.html">
+									<a href="tintuc/{{$dt['id']}}/{{$dt['TieuDeKhongDau']}}">
 										<h4>
 											<span class="glyphicon glyphicon-list-alt"></span>
 											{{$dt['TieuDe']}}

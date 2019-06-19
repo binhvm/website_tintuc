@@ -125,7 +125,7 @@ Route::post('dangky', 'UserController@postDangKy');
 
 //Detail users
 Route::get('thongtintk/{id}', 'UserController@getSuaTK');
-Route::post('thongtintk', 'UserController@postSuaTK');
+Route::post('thongtintk/{id}', 'UserController@postSuaTK');
 
 //Search
 Route::get('timkiem', 'PagesController@getTimKiem');

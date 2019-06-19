@@ -13,7 +13,7 @@
                         <h4><b>Tìm kiếm: {{$tukhoa}}</b></h4>
                     </div>
 					
-					@foreach($tintuc as $tt)
+					@foreach($data as $tt)
 	                    <div class="row-item row">
 	                        <div class="col-md-3">
 
@@ -35,7 +35,7 @@
                     <!-- Pagination -->
                     <div class="row text-center">
                         <div class="col-lg-12">
-                            {{$tintuc->links()}}
+                            {!!$data->links()!!}
                         </div>
                     </div>
                     <!-- /.row -->

@@ -42,4 +42,13 @@ class PagesController extends Controller
 
         return view('pages.tintuc', compact('tintuc', 'tinnoibat', 'tinlienquan'));
     }
+
+    public function getTimKiem(Request $request)
+    {
+        $tukhoa = $request->timkiem;
+        $data = TinTuc::where('TieuDe', 'like', '%'.$tukhoa.'%')->orWhere('TomTat', 'like', '%'.$tukhoa.'%')->orWhere('NoiDung', 'like', '%'.$tukhoa.'%')->paginate(10);
+        // dd(count($data));
+
+        return view('pages.timkiem', compact('data', 'tukhoa'));
+    }
 }

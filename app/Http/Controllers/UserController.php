@@ -149,4 +149,29 @@ class UserController extends Controller
         $user = User::find($id);
         return view('pages.nguoidung', compact('user'));
     }
+
+    public function postSuaTK(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name' => 'min:5'
+        ], [
+            'name.min' => 'Tên người dùng tối thiểu 5 ký tự.'
+        ]);
+        $user = User::find($id);
+        $user->name = $request->name;
+        if($request->changePassword == "on"){
+            $this->validate($request, [
+                'password' => 'min:8|max:32',
+                'repassword' => 'same:password'
+            ], [
+                'password.min' => 'Mật khẩu tối thiểu 8 ký tự.',
+                'passqord.max' => 'Mật khẩu tối đa 32 ký tự.',
+                'repassword.same' => 'Xác nhận mật khẩu không đúng.'
+            ]);
+            $user->password = bcrypt($request->password);
+        }
+        $user->save();
+
+        return redirect()->back()->with('thongbao', 'Thay đổi thông tin người dùng thành công.');
+    }
 }

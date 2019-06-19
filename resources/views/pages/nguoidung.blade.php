@@ -1,52 +1,71 @@
 @extends('layout.index')
 
 @section('content')
-    <!-- Page Content -->
-    <div class="container">
-
-    	<!-- slider -->
-    	<div class="row carousel-holder">
-            <div class="col-md-2">
+<!-- Page Content -->
+<div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3">
+                    </div>
+                    <!-- /.col-lg-12 -->
+                    <div class="col-lg-6" style="padding-bottom:120px">
+                        
+                        {{-- Hiển thị lỗi--}}
+                        @if(count($errors) > 0)
+                            <div class="alert alert-danger">
+                                @foreach($errors->all() as $err)
+                                    {{$err}}<br>
+                                @endforeach
+                            </div>
+                        @endif
+                        
+                        {{-- Hiển thị thông báo --}}
+                        @if(session('thongbao'))
+                            <div class="alert alert-success">{{session('thongbao')}}</div>
+                        @endif
+						
+                        <h1 class="page-header">Người dùng
+                            <small>Thông tin tài khoản</small>
+                        </h1>
+                        <form action="thongtintk/{{$user->id}}" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <label>Tên người dùng</label>
+                                <input class="form-control" name="name" value="{{$user->name}}" />
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input class="form-control" name="email" value="{{$user->email}}" disabled="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="changePassword" id="changePassword">
+                                <label>Thay đổi mật khẩu</label>
+                                <input class="form-control password" type="password" name="password" placeholder="Vui lòng nhập mật khẩu" disabled required />
+                            </div>
+                            <div class="form-group">
+                                <label>Xác nhận thay đổi mật khẩu</label>
+                                <input class="form-control password" type="password" name="repassword" placeholder="Vui lòng nhập xác nhận mật khẩu" disabled required />
+                            </div>
+                            <div class="form-group">
+                                <label>Quyền: </label>
+                                @if(Auth::user()->quyen == 1)
+                                	{{"Quản trị"}}
+                                @else
+                                	{{"Thành viên"}}
+                                @endif
+                            </div>
+                            <button type="submit" class="btn btn-warning">Thay đổi</button>
+                            <a href="trangchu" class="btn btn-dark" role="button">Hủy</a>
+                        <form>
+                    </div>
+                    <div class="col-lg-3">
+                    </div>
+                </div>
+                <!-- /.row -->
             </div>
-            <div class="col-md-8">
-                <div class="panel panel-default">
-				  	<div class="panel-heading"><b>Thông tin tài khoản</b></div>
-				  	<div class="panel-body">
-				    	<form>
-				    		<div>
-				    			<label>Họ tên</label>
-							  	<input type="text" class="form-control" name="name" value="{{$user->name}}" aria-describedby="basic-addon1">
-							</div>
-							<br>
-							<div>
-				    			<label>Email</label>
-							  	<input type="email" class="form-control" placeholder="Email" name="email" value="{{$user->email}}" aria-describedby="basic-addon1" disabled>
-							</div>
-							<br>	
-							<div>
-								<input type="checkbox" name="changePassword" id="changePassword">
-				    			<label>Đổi mật khẩu</label>
-							  	<input type="password" class="form-control" disabled name="password" aria-describedby="basic-addon1">
-							</div>
-							<br>
-							<div>
-				    			<label>Nhập lại mật khẩu</label>
-							  	<input type="password" class="form-control" disabled name="passwordAgain" aria-describedby="basic-addon1">
-							</div>
-							<br>
-							<button type="submit" class="btn btn-warning">Sửa</button>
-							<a href="trangchu" class="btn btn-dark" role="button">Hủy</a>
-				    	</form>
-				  	</div>
-				</div>
-            </div>
-            <div class="col-md-2">
-            </div>
-        </div>
-        <!-- end slide -->
-    </div>
-    <!-- end Page Content -->
-
+            <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
 @endsection
 
 @section('script')
