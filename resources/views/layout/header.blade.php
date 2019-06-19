@@ -25,7 +25,7 @@
 
                 <form class="navbar-form navbar-left" role="search" action="timkiem" method="get">
 			        <div class="form-group">
-			          <input type="text" name='timkiem' class="form-control" placeholder="Tìm kiếm">
+			          <input type="text" name='timkiem' class="form-control" placeholder="Tìm kiếm" required="">
 			        </div>
 			        <button type="submit" class="btn btn-secondary">Tìm</button>
 			    </form>

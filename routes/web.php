@@ -129,3 +129,6 @@ Route::post('thongtintk/{id}', 'UserController@postSuaTK');
 
 //Search
 Route::get('timkiem', 'PagesController@getTimKiem');
+
+Route::post('comment', 'CommentController@postComment');
+Route::get('list-comment/{id}', 'CommentController@getComment');

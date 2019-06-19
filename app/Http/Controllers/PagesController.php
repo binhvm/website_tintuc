@@ -7,6 +7,7 @@ use App\TheLoai;
 use App\Slide;
 use App\LoaiTin;
 use App\TinTuc;
+use Auth;
 
 class PagesController extends Controller
 {
@@ -47,8 +48,7 @@ class PagesController extends Controller
     {
         $tukhoa = $request->timkiem;
         $data = TinTuc::where('TieuDe', 'like', '%'.$tukhoa.'%')->orWhere('TomTat', 'like', '%'.$tukhoa.'%')->orWhere('NoiDung', 'like', '%'.$tukhoa.'%')->paginate(10);
-        // dd(count($data));
-
+        $data->setPath('timkiem?');
         return view('pages.timkiem', compact('data', 'tukhoa'));
     }
 }

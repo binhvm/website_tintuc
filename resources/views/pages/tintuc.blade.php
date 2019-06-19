@@ -33,12 +33,15 @@
                 <!-- Comments Form -->
                 @if(Auth::check())
                 <div class="well">
-                    <h5>Viết bình luận...<span class="glyphicon glyphicon-pencil"></span></h5>
-                    <form role="form">
+                    <h5>Viết bình luận... <span class="glyphicon glyphicon-pencil"></span></h5>
+                    <form role="form" method="POST" id="form_comment">
                         <div class="form-group">
-                            <textarea class="form-control" rows="3"></textarea>
+                            <textarea class="form-control" rows="3" name="NoiDung" id="NoiDung"></textarea>
+                            <input type="hidden" name="idTinTuc" id="idTinTuc" value="{{$tintuc->id}}">
+                            <input type="hidden" name="idUser" id="idUser" value="{{Auth::user()->id}}">
+                            <input type="hidden" name="User" id="User" value="{{Auth::user()->name}}">
                         </div>
-                        <button type="submit" class="btn btn-primary"> Gửi</button>
+                        <input type="submit" class="btn btn-primary" id="btn_comment" value="Gửi"> 
                     </form>
                 </div>
                 <hr>
@@ -47,20 +50,17 @@
                 <!-- Posted Comments -->
 
                 <!-- Comment -->
-                @foreach($tintuc->comment as $cm)
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="http://placehold.it/64x64" alt="">
-                    </a>
-                    <div class="media-body">
-                        <h5 class="media-heading">{{$cm->user->name}}
-                            <small>{{$cm->created_at}}</small>
-                        </h5>
-                        {{$cm->NoiDung}}
+                <div id="data-comment">
+                    @foreach($tintuc->comment as $cm)
+                    <div class="media">
+                        <div class="media-body list-comment">
+                            <h5 class="media-heading">{{$cm->user->name}}: {{$cm->NoiDung}}<br>
+                                <small>{{$cm->created_at}}</small>
+                            </h5>
+                        </div>
                     </div>
+                    @endforeach
                 </div>
-                @endforeach
-
             </div>
 
             <!-- Blog Sidebar Widgets Column -->
@@ -118,4 +118,42 @@
         <!-- /.row -->
     </div>
     <!-- end Page Content -->
+@endsection
+
+{{-- Ajax comment --}}
+@section('script')
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $(document).ready(function() {
+            $('#form_comment').on('submit',function(event){
+                
+                event.preventDefault();
+
+                var form_data = $(this).serialize();
+                $.ajax({
+                    url: "comment",
+                    method: "POST",
+                    data: form_data,
+                    dataType:"JSON",
+                    success:function(data){
+                        console.log(data);
+                        $("#data-comment").append(
+                            '<div class="media">'+
+                                '<div class="media-body list-comment">'+
+                                    '<h5 class="media-heading">'+data.idUser+":"+data.NoiDung+'</h5>'+
+                                    '<small>'+data.created_at+
+                                    '</small>'+
+                                '</div>'+
+                            '</div>'
+                        );
+                        $('#form_comment')[0].reset();
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
