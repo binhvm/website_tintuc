@@ -130,11 +130,10 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
         $(document).ready(function() {
             $('#form_comment').on('submit',function(event){
-                
                 event.preventDefault();
-
                 var form_data = $(this).serialize();
                 $.ajax({
                     url: "comment",

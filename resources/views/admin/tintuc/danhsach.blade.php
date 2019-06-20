@@ -43,8 +43,12 @@
                                     <td>{{$tt->loaitin->Ten}}</td>
                                     <td>{{$tt->SoLuotXem}}</td>
                                     <td>{{$tt->NoiBat}}</td>
-                                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/tintuc/xoa/{{$tt->id}}"> Xóa</a></td>
-                                    <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/tintuc/sua/{{$tt->id}}">Sửa</a></td>
+                                    <td>
+                                        <a href="admin/tintuc/sua/{{$tt->id}}"><input type="button" class="btn btn-warning" id="btn_comment" value="Sửa"></a>
+                                    </td>
+                                    <td>
+                                        <a href="admin/tintuc/xoa/{{$tt->id}}"><input type="button" class="btn btn-danger" id="btn_comment" value="Xóa"></a>
+                                    </td>
                                 </tr>
                             @endif
                             @endforeach

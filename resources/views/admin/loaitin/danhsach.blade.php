@@ -34,8 +34,12 @@
                                 <td>{{$lt->theloai->Ten}}</td>
                                 <td>{{$lt->Ten}}</td>
                                 <td>{{$lt->TenKhongDau}}</td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/loaitin/xoa/{{$lt->id}}"> Xóa</a></td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/loaitin/sua/{{$lt->id}}">Sửa</a></td>
+                                <td>
+                                    <a href="admin/loaitin/sua/{{$lt->id}}"><input type="button" class="btn btn-warning" id="btn_comment" value="Sửa"></a>
+                                </td>
+                                <td>
+                                    <a href="admin/loaitin/xoa/{{$lt->id}}"><input type="button" class="btn btn-danger" id="btn_comment" value="Xóa"></a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

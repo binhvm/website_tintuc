@@ -32,8 +32,12 @@
                                 <td>{{$tl->id}}</td>
                                 <td>{{$tl->Ten}}</td>
                                 <td>{{$tl->TenKhongDau}}</td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/theloai/xoa/{{$tl->id}}"> Xóa</a></td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/theloai/sua/{{$tl->id}}"> Sửa</a></td>
+                                <td>
+                                    <a href="admin/theloai/sua/{{$tl->id}}"><input type="button" class="btn btn-warning" id="btn_comment" value="Sửa"></a>
+                                </td>
+                                <td>
+                                    <a href="admin/theloai/xoa/{{$tl->id}}"><input type="button" class="btn btn-danger" id="btn_comment" value="Xóa"></a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

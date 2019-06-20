@@ -38,8 +38,12 @@
                                     <img class="img-rounded" width="100px" src="upload/slide/{{$slide->Hinh}}">
                                 </td>
                                 <td>{{$slide->link}}</td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/slide/sua/{{$slide->id}}"> Sửa</a></td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/slide/xoa/{{$slide->id}}"> Xóa</a></td>
+                                <td>
+                                    <a href="admin/slide/sua/{{$slide->id}}"><input type="button" class="btn btn-warning" id="btn_comment" value="Sửa"></a>
+                                </td>
+                                <td>
+                                    <a href="admin/slide/xoa/{{$slide->id}}"><input type="button" class="btn btn-danger" id="btn_comment" value="Xóa"></a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
