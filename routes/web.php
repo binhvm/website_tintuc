@@ -53,6 +53,9 @@ Route::group(['prefix'=>'admin', 'middleware' => 'adminLogin'], function(){
 	Route::group(['prefix'=>'tintuc'], function(){
 		Route::get('danhsach', 'TinTucController@getDanhSach');
 
+		Route::get('pheduyet', 'TinTucController@getPheDuyet');
+		Route::get('pheduyet/{id}', 'TinTucController@postPheDuyet');
+
 		Route::get('them', 'TinTucController@getThem');
 		Route::post('them', 'TinTucController@postThem');
 
@@ -91,9 +94,6 @@ Route::group(['prefix'=>'admin', 'middleware' => 'adminLogin'], function(){
 
 		Route::get('sua/{id}', 'UserController@getSua');
 		Route::post('sua/{id}', 'UserController@postSua');
-
-		Route::get('xoa/{id}', 'UserController@getXoa');
-		Route::post('xoa/{id}', 'UserController@postXoa');
 	});
 
 	//Ajax

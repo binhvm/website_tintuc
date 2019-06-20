@@ -32,19 +32,21 @@
                         </thead>
                         <tbody>
                             @foreach($tintuc as $tt)
-                            <tr class="odd gradeX" align="center">
-                                <td>{{$tt->id}}</td>
-                                <td>
-                                    <img width="50px" height="50px" class="img-rounded" src="upload/tintuc/{{$tt->Hinh}}"><br>
-                                    {{$tt->TieuDe}}</td>
-                                <td>{{$tt->TomTat}}</td>
-                                <td>{{$tt->loaitin->theloai->Ten}}</td>
-                                <td>{{$tt->loaitin->Ten}}</td>
-                                <td>{{$tt->SoLuotXem}}</td>
-                                <td>{{$tt->NoiBat}}</td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/tintuc/xoa/{{$tt->id}}"> Xóa</a></td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/tintuc/sua/{{$tt->id}}">Sửa</a></td>
-                            </tr>
+                            @if($tt->PheDuyet == 1)
+                                <tr class="odd gradeX" align="center">
+                                    <td>{{$tt->id}}</td>
+                                    <td>
+                                        <img width="50px" height="50px" class="img-rounded" src="upload/tintuc/{{$tt->Hinh}}"><br>
+                                        {{$tt->TieuDe}}</td>
+                                    <td>{{$tt->TomTat}}</td>
+                                    <td>{{$tt->loaitin->theloai->Ten}}</td>
+                                    <td>{{$tt->loaitin->Ten}}</td>
+                                    <td>{{$tt->SoLuotXem}}</td>
+                                    <td>{{$tt->NoiBat}}</td>
+                                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/tintuc/xoa/{{$tt->id}}"> Xóa</a></td>
+                                    <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/tintuc/sua/{{$tt->id}}">Sửa</a></td>
+                                </tr>
+                            @endif
                             @endforeach
                         </tbody>
                     </table>

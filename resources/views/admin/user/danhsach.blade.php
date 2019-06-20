@@ -23,7 +23,7 @@
                                 <th>Tên người dùng</th>
                                 <th>Email</th>
                                 <th>Quyền</th>
-                                <th>Hành động</th>
+                                <th>Trạng thái</th>
                                 <th>Hành động</th>
                             </tr>
                         </thead>
@@ -40,8 +40,14 @@
                                         {{"Quản trị"}}
                                     @endif
                                 </td>
+                                <td>
+                                    @if($u->status == 1)
+                                        {{"Hoạt động"}}
+                                    @else
+                                        {{"Vô hiệu"}}
+                                    @endif
+                                </td>
                                 <td class="center"><i class="fa fa-trash-o fa-fw"></i><a href="admin/user/sua/{{$u->id}}"> Sửa</a></td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i><a href="admin/user/xoa/{{$u->id}}"> Xóa</a></td>
                             </tr>
                             @endforeach
                         </tbody>

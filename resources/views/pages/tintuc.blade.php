@@ -52,13 +52,15 @@
                 <!-- Comment -->
                 <div id="data-comment">
                     @foreach($tintuc->comment as $cm)
-                    <div class="media">
-                        <div class="media-body list-comment">
-                            <h5 class="media-heading">{{$cm->user->name}}: {{$cm->NoiDung}}<br>
-                                <small>{{$cm->created_at}}</small>
-                            </h5>
-                        </div>
-                    </div>
+                        @if($cm->user->status == 1)
+                            <div class="media">
+                                <div class="media-body list-comment">
+                                    <h5 class="media-heading">{{$cm->user->name}}: {{$cm->NoiDung}}<br>
+                                        <small>{{$cm->created_at}}</small>
+                                    </h5>
+                                </div>
+                            </div>
+                        @endif
                     @endforeach
                 </div>
             </div>

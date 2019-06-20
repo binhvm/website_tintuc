@@ -20,6 +20,21 @@ class TinTucController extends Controller
     	return view('admin.tintuc.danhsach',compact('tintuc'));
     }
 
+    public function getPheDuyet()
+    {
+        $tintuc = TinTuc::all();
+        return view('admin.tintuc.pheduyet',compact('tintuc'));
+    }
+
+    public function postPheDuyet($id)
+    {
+        $tintuc = TinTuc::find($id);
+        $tintuc->PheDuyet = 1;
+        $tintuc->save();
+
+        return redirect()->back()->with('thongbao', 'Phê duyệt thành công.');
+    }
+
     public function getThem()
     {
     	$theloai = TheLoai::all();
@@ -36,6 +51,7 @@ class TinTucController extends Controller
     	$tintuc->NoiDung = $request->NoiDung;
     	$tintuc->idLoaiTin = $request->LoaiTin;
     	$tintuc->SoLuotXem = 0;
+        $tintuc->PheDuyet = 0;
     	$tintuc->NoiBat = $request->NoiBat;
     	
     	if ($request->hasFile('Hinh')) {
@@ -56,7 +72,7 @@ class TinTucController extends Controller
     	}
     	$tintuc->save();
 
-    	return redirect()->back()->with('thongbao', 'Thêm tin tức thành công.');
+    	return redirect()->back()->with('thongbao', 'Thêm tin tức thành công, đang đợi phê duyệt.');
     }
 
     public function getSua($id)

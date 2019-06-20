@@ -10,6 +10,9 @@
         a:hover{
             text-decoration: none;
         }
+        a{
+            text-decoration: none;
+        }
     </style>
     <title>Website Tin Tức</title>
     <base href="{{asset('')}}">

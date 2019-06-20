@@ -8,10 +8,12 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand">Quản trị website</a>
+                <a class="navbar-brand" href="trangchu">Trang chủ</a>
             </div>
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
+                <a class="navbar-brand" href="admin/tintuc/pheduyet">Tin tức chờ phê duyệt</a>
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">

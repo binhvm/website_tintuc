@@ -50,6 +50,7 @@ class UserController extends Controller
     	$user = User::find($id);
     	$user->name = $request->name;
     	$user->quyen = $request->quyen;
+        $user->status = $request->status;
     	if($request->changePassword == "on"){
     		$this->validate($request, [
     			'password' => 'min:8|max:32',
@@ -66,21 +67,6 @@ class UserController extends Controller
     	return redirect()->back()->with('thongbao', 'Sửa thông tin người dùng thành công.');
     }
 
-    public function getXoa($id)
-    {
-    	$user = User::find($id);
-
-    	return view('admin.user.xoa', compact('user'));
-    }
-
-    public function postXoa($id)
-    {
-    	$user = User::find($id);
-    	$user->delete();
-
-    	return redirect('admin/user/danhsach')->with('thongbao', 'Xóa người dùng thành công.');
-    }
-
     //Login Admin
     public function getDangNhapAdmin()
     {
@@ -90,7 +76,7 @@ class UserController extends Controller
     public function postDangNhapAdmin(Request $request)
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect('admin/tintuc/danhsach');
+            return redirect('admin/user/danhsach');
         }else{
             return redirect('admin/dangnhap')->with('thongbao', 'Email hoặc mật khẩu không đúng.');
         }

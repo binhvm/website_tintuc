@@ -1,7 +1,7 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
+                        {{-- <li class="sidebar-search">
                             <div class="input-group custom-search-form">
                                 <input type="text" class="form-control" placeholder="Tìm kiếm...">
                                 <span class="input-group-btn">
@@ -11,9 +11,9 @@
                                 </span>
                             </div>
                             <!-- /input-group -->
-                        </li>
+                        </li> --}}
                         <li>
-                            <a><i class="fa fa-dashboard fa-fw"></i> Bảng điều khiển</a>
+                            <a><i class="fa fa-dashboard fa-fw"></i> Menu</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Thể loại<span class="fa arrow"></span></a>

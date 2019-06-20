@@ -61,6 +61,21 @@
                                     >Quản trị
                                 </label>
                             </div>
+                            <div class="form-group">
+                                <label>Trạng thái: </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="status" value="1" 
+                                    @if($user->status == 1) {{"checked"}}
+                                    @endif
+                                    >Hoạt động
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="status" value="0"
+                                    @if($user->status == 0) {{"checked"}}
+                                    @endif
+                                    >Vô hiệu tài khoản
+                                </label>
+                            </div>
                             <button type="submit" class="btn btn-warning">Sửa</button>
                             <a href="admin/user/danhsach" class="btn btn-dark" role="button">Hủy</a>
                         <form>
