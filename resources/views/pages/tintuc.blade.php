@@ -104,7 +104,7 @@
                                 </a>
                             </div>
                             <div class="col-md-7">
-                                <a href="tintuc/{{$tlq->id}}/{{$tlq->TieuDeKhongDau}}"><b>{{$tnb->TieuDe}}</b></a>
+                                <a href="tintuc/{{$tlq->id}}/{{$tnb->TieuDeKhongDau}}"><b>{{$tnb->TieuDe}}</b></a>
                             </div>
                             <p style="padding: 10px">{{$tnb->TomTat}}</p>
                             <div class="break"></div>
