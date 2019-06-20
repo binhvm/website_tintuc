@@ -27,7 +27,7 @@
 			                		<a href="category.html">{{$tl->Ten}}</a> | 	
 			                		@foreach($tl->loaitin as $lt)
 			                			@if(count($lt->tintuc) > 0)
-			                				<small><a href="loaitin/{{$lt->id}}/{{$lt->TenKhongDau}}"><i>{{$lt->Ten}}</i></a>/</small>
+			                				<small><a href="loaitin/{{$lt->id}}/{{$lt->TenKhongDau}}"><i>{{$lt->Ten}}</i></a> |</small>
 			                			@endif
 			                		@endforeach
 			                	</h3>
