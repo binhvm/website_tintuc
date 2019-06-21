@@ -27,32 +27,39 @@
 <body>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="login-panel panel panel-default">
+        <!-- slider -->
+        <div class="row carousel-holder" style="margin-top: 100px;">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+
                     @if(session('thongbao'))
                         <div class="alert alert-danger">{{session('thongbao')}}</div>
                     @endif
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><b>Đăng nhập</b></h3>
-                    </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading "><b>Đăng nhập quản trị</b></div>
                     <div class="panel-body">
-                        <form role="form" action="" method="POST">
-                            <fieldset>
-                                @csrf
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Vui lòng nhập email" name="email" type="email" value="{{old('email')}}" required>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Vui lòng nhập mật khẩu" name="password" type="password" required>
-                                </div>
-                                <button type="submit" class="btn btn-lg btn-success btn-block">Đăng nhập</button>
-                            </fieldset>
+                        <form action="admin/dangnhap" method="POST">
+                            @csrf
+                            <div>
+                                <label>Email</label>
+                                <input type="email" class="form-control" placeholder="Vui lòng nhập địa chỉ email" name="email" value="{{old('email')}}" required>
+                            </div>
+                            <br>    
+                            <div>
+                                <label>Mật khẩu</label>
+                                <input type="password" class="form-control" placeholder="Vui lòng nhập mật khẩu" name="password" required>
+                            </div>
+                            <br>
+                            <button type="submit" class="btn btn-success">Đăng nhập</button>
+                            <a href="trangchu" class="btn btn-dark" role="button">Hủy</a>
                         </form>
                     </div>
                 </div>
             </div>
+            <div class="col-md-4"></div>
         </div>
+        <!-- end slide -->
     </div>
 
     <!-- jQuery -->

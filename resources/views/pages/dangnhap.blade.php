@@ -12,6 +12,7 @@
                 	@if(session('thongbao'))
                         <div class="alert alert-danger">{{session('thongbao')}}</div>
                     @endif
+
                 <div class="panel panel-default">
 				  	<div class="panel-heading "><b>Đăng nhập</b></div>
 				  	<div class="panel-body">
