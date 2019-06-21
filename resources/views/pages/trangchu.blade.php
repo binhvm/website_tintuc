@@ -2,13 +2,15 @@
 
 @section('content')
     <!-- Page Content -->
-    <div class="container">
+<div class="container">
 
+	@if(session('thongbao'))
+		<div class="alert alert-danger">{{session('thongbao')}}</div>
+	@endif
+	
 	@include('layout.slide')
 
         <div class="space20"></div>
-
-
         <div class="row main-left">
 			@include('layout.menu')
 
@@ -24,7 +26,7 @@
 		            		<!-- item -->
 						    <div class="row-item row">
 			                	<h3>
-			                		<a href="category.html">{{$tl->Ten}}</a> | 	
+			                		{{$tl->Ten}} | 	
 			                		@foreach($tl->loaitin as $lt)
 			                			@if(count($lt->tintuc) > 0)
 			                				<small><a href="loaitin/{{$lt->id}}/{{$lt->TenKhongDau}}"><i>{{$lt->Ten}}</i></a> |</small>
@@ -47,10 +49,8 @@
 				                        <p>{{$tin1['TomTat']}}</p>
 				                        <a class="btn btn-primary" href="tintuc/{{$tin1['id']}}/{{$tin1['TieuDeKhongDau']}}">Chi tiết <span class="glyphicon glyphicon-chevron-right"></span></a>
 									</div>
-
 			                	</div>
 			                    
-
 								<div class="col-md-4">
 									@foreach($data->all() as $dt)
 									<a href="tintuc/{{$dt['id']}}/{{$dt['TieuDeKhongDau']}}">

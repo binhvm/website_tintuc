@@ -22,7 +22,7 @@ class AdminLoginMiddleware
             }elseif($user->status ==0){
                 return redirect()->back()->with('thongbao', 'Tài khoản bị vô hiệu, liên hệ nhà cung cấp để được trợ giúp.');
             }else{
-                return redirect('trangchu');
+                return redirect()->back()->with('thongbao', 'Bạn không đủ quyền truy cập trang.');
             }
         }else{
             return redirect('admin/dangnhap');

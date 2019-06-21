@@ -4,6 +4,9 @@
 
     <!-- Page Content -->
     <div class="container">
+        @if(session('thongbao'))
+            <div class="alert alert-danger">{{session('thongbao')}}</div>
+        @endif
         <div class="row">
             @include('layout.menu')
 

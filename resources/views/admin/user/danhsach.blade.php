@@ -8,24 +8,6 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">Người dùng
                             <small>Danh sách</small>
-                            {{-- <input type="button" style="float: right;" class="btn btn-success" id="btn_comment" data-toggle="modal" data-target="#myModal" value="Thêm mới">
-                            <div class="modal fade" id="myModal" role="dialog">
-                            <div class="modal-dialog">
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Thêm mới tài khoản</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Some text in the modal.</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                    </div>
-                                </div>
-                            </div>
-                          </div> --}}
                         </h1>
                     </div>
                     

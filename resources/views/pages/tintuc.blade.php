@@ -3,6 +3,9 @@
 @section('content')
     <!-- Page Content -->
     <div class="container">
+        @if(session('thongbao'))
+            <div class="alert alert-danger">{{session('thongbao')}}</div>
+        @endif
         <div class="row">
 
             <!-- Blog Post Content Column -->
@@ -104,7 +107,7 @@
                                 </a>
                             </div>
                             <div class="col-md-7">
-                                <a href="tintuc/{{$tlq->id}}/{{$tnb->TieuDeKhongDau}}"><b>{{$tnb->TieuDe}}</b></a>
+                                <a href="tintuc/{{$tnb->id}}/{{$tnb->TieuDeKhongDau}}"><b>{{$tnb->TieuDe}}</b></a>
                             </div>
                             <p style="padding: 10px">{{$tnb->TomTat}}</p>
                             <div class="break"></div>
@@ -141,7 +144,6 @@
                     data: form_data,
                     dataType:"JSON",
                     success:function(data){
-                        console.log(data);
                         $("#data-comment").append(
                             '<div class="media">'+
                                 '<div class="media-body list-comment">'+
