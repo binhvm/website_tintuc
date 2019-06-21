@@ -24,19 +24,16 @@ class UserController extends Controller
 
     public function postThem(UserRequest $request)
     {
-    	$user = new User;
-    	$user->name = $request->name;
-    	$user->email = $request->email;
-    	$user->quyen = $request->quyen;
-    	$user->password = bcrypt($request->password);
-    	$user->save();
+        $input = $request->only('name', 'email', 'quyen');
+        $input['password'] = bcrypt($request->password);
+        $user = User::create($input);
 
     	return redirect()->back()->with('thongbao', 'Thêm mới người dùng thành công.');
     }
 
     public function getSua($id)
     {
-    	$user = User::find($id);
+    	$user = User::findorfail($id);
     	return view('admin.user.sua', compact('user'));
     }
 
@@ -47,11 +44,10 @@ class UserController extends Controller
     	], [
     		'name.min' => 'Tên người dùng tối thiểu 5 ký tự.'
     	]);
-    	$user = User::find($id);
-    	$user->name = $request->name;
-    	$user->quyen = $request->quyen;
-        $user->status = $request->status;
-    	if($request->changePassword == "on"){
+
+        $input = $request->only('name', 'quyen', 'status');
+    	
+        if($request->changePassword == "on"){
     		$this->validate($request, [
     			'password' => 'min:8|max:32',
     			'repassword' => 'same:password'
@@ -60,9 +56,11 @@ class UserController extends Controller
     			'passqord.max' => 'Mật khẩu tối đa 32 ký tự.',
     			'repassword.same' => 'Xác nhận mật khẩu không đúng.'
     		]);
-    		$user->password = bcrypt($request->password);
+    		$input['password'] = bcrypt($request->password);
     	}
-    	$user->save();
+
+        $user = User::findOrFail($id);
+    	$user->update($input);
 
     	return redirect()->back()->with('thongbao', 'Sửa thông tin người dùng thành công.');
     }
@@ -119,12 +117,10 @@ class UserController extends Controller
 
     public function postDangKy(UserRequest $request)
     {
-        $users = new User;
-        $users->name = $request->name;
-        $users->email = $request->email;
-        $users->quyen = 0;
-        $users->password = bcrypt($request->password);
-        $users->save();
+        $input = $request->only('name', 'email');
+        $input['quyen'] = 0;
+        $input['password'] = bcrypt($request->password);
+        $user = User::create($input);
 
         return redirect('dangnhap')->with('thongbao', 'Đăng ký thành công.');
     }

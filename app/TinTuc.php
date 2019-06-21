@@ -10,6 +10,9 @@ class TinTuc extends Model
 {
     //
     protected $table = "tintuc";
+    protected $fillable = [
+        'TieuDe', 'TieuDeKhongDau', 'TomTat', 'NoiDung', 'Hinh', 'NoiBat', 'SoLuotXem', 'idLoaiTin', 'PheDuyet',
+    ];
 
     public function loaitin()
     {

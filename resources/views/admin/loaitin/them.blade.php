@@ -28,7 +28,7 @@
                             @csrf
                             <div class="form-group">
                                 <label>Thể lọai</label>
-                                <select class="form-control" name="TheLoai" required="">
+                                <select class="form-control" name="idTheLoai" required="">
                                     <option value="0">Vui lòng chọn thể loại</option>
                                     @foreach($theloai as $tl)
                                         <option value="{{$tl->id}}">{{$tl->Ten}}</option>

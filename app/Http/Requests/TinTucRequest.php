@@ -25,8 +25,8 @@ class TinTucRequest extends FormRequest
     {
         return [
             //
-            'TheLoai' => 'required',
-            'LoaiTin' => 'required',
+            'idTheLoai' => 'required',
+            'idLoaiTin' => 'required',
             'TieuDe' => 'max:50|min:5',
             'TomTat' => 'max:300|min:10',
             'NoiDung' => 'required|max:1000|min:50'
@@ -36,8 +36,8 @@ class TinTucRequest extends FormRequest
     public function messages()
     {
         return [
-            'TheLoai.required' => 'Bạn chưa chọn thể loại.',
-            'LoaiTin.required' => 'Bạn chưa chọn loại tin.',
+            'idTheLoai.required' => 'Bạn chưa chọn thể loại.',
+            'idLoaiTin.required' => 'Bạn chưa chọn loại tin.',
             'TieuDe.max' => 'Tiêu đề tối đa 50 ký tự.',
             'TieuDe.min' => 'Tiêu đề tối thiểu 5 ký tự.',
             'TomTat.max' => 'Tóm tắt tối đa 300 ký tự.',

@@ -25,11 +25,9 @@ class LoaiTinController extends Controller
 
     public function postThem(LoaiTinRequest $request)
     {
-        $loaitin = new LoaiTin;
-        $loaitin->idTheLoai = $request->TheLoai;
-        $loaitin->Ten = $request->Ten;
-        $loaitin->TenKhongDau = changeTitle($request->Ten);
-        $loaitin->save();
+        $input = $request->only('idTheLoai', 'Ten');
+        $input['TenKhongDau'] = changeTitle($request->Ten);
+        $loaitin = LoaiTin::create($input);
 
         return redirect('admin/loaitin/them')->with('thongbao', 'Thêm mới loại tin thành công.');
     }

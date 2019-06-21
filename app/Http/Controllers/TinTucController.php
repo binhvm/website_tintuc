@@ -44,15 +44,10 @@ class TinTucController extends Controller
 
     public function postThem(TinTucRequest $request)
     {
-    	$tintuc = new TinTuc;
-    	$tintuc->TieuDe = $request->TieuDe;
-    	$tintuc->TieuDeKhongDau = changeTitle($request->TieuDe);
-    	$tintuc->TomTat = $request->TomTat;
-    	$tintuc->NoiDung = $request->NoiDung;
-    	$tintuc->idLoaiTin = $request->LoaiTin;
-    	$tintuc->SoLuotXem = 0;
-        $tintuc->PheDuyet = 0;
-    	$tintuc->NoiBat = $request->NoiBat;
+        $input = $request->only('TieuDe', 'TomTat', 'NoiDung', 'Hinh', 'NoiBat', 'idLoaiTin');
+        $input['TieuDeKhongDau'] = changeTitle($request->TieuDe);
+        $input['SoLuotXem'] = 0;
+        $input['PheDuyet'] = 0;
     	
     	if ($request->hasFile('Hinh')) {
     		$file = $request->file('Hinh');
@@ -66,11 +61,11 @@ class TinTucController extends Controller
     			$Hinh = str_random(5)."_". $name;
     		}
     		$file->move("upload/tintuc", $Hinh);
-    		$tintuc->Hinh = $Hinh;
+    		$input['Hinh'] = $Hinh;
     	}else{
-    		$tintuc->Hinh = "";
+    		$input['Hinh'] = "";
     	}
-    	$tintuc->save();
+    	$tintuc = TinTuc::create($input);
 
     	return redirect()->back()->with('thongbao', 'Thêm tin tức thành công, đang đợi phê duyệt.');
     }

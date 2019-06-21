@@ -117,7 +117,9 @@
                                 <td>{{$cm->user->name}}</td>
                                 <td>{{$cm->NoiDung}}</td>
                                 <td>{{$cm->created_at}}</td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/comment/xoa/{{$cm->id}}/{{$tintuc->id}}"> Xóa</a></td>
+                                <td>
+                                    <a href="admin/comment/xoa/{{$cm->id}}/{{$tintuc->id}}"><input type="button" class="btn btn-danger" id="btn_comment" value="Xóa"></a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
