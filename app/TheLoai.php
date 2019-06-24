@@ -10,6 +10,9 @@ class TheLoai extends Model
 {
     //
     protected $table = "theloai";
+    protected $fillable = [
+        'Ten', 'TenKhongDau',
+    ];
 
     public function loaitin()
     {

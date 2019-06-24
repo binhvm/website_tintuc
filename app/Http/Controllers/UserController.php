@@ -33,7 +33,7 @@ class UserController extends Controller
 
     public function getSua($id)
     {
-    	$user = User::findorfail($id);
+    	$user = User::findOrFail($id);
     	return view('admin.user.sua', compact('user'));
     }
 

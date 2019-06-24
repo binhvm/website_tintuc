@@ -17,6 +17,7 @@
                     </div>
 					
 					@foreach($tintuc as $tt)
+                    @if($tt->PheDuyet == 1)
 	                    <div class="row-item row">
 	                        <div class="col-md-3">
 
@@ -33,6 +34,7 @@
 	                        </div>
 	                        <div class="break"></div>
 	                    </div>
+                    @endif
                     @endforeach
 
                     <!-- Pagination -->
