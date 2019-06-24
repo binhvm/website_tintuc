@@ -31,26 +31,26 @@
 			    </form>
 
 			    <ul class="nav navbar-nav pull-right">
-                    @if(Auth::check())
-                        <li>
-                            <a href="thongtintk/{{Auth::user()->id}}"><span class="glyphicon glyphicon-user"></span> {{Auth::user()->name}}</a>
-                        </li>
-                        @if(Auth::user()->quyen == 1)
+                        @if(Auth::check())
                             <li>
-                                <a href="admin/user/danhsach"><span class="glyphicon glyphicon-th"></span> Quản trị website</a>
+                                <a href="thongtintk/{{Auth::user()->id}}"><span class="glyphicon glyphicon-user"></span> {{Auth::user()->name}}</a>
+                            </li>
+                            @if(Auth::user()->quyen == 1)
+                                <li>
+                                    <a href="admin/user/danhsach"><span class="glyphicon glyphicon-th"></span> Quản trị website</a>
+                                </li>
+                            @endif
+                            <li>
+                                <a href="dangxuat"><span class="glyphicon glyphicon-log-out"></span> Đăng xuất</a>
+                            </li>
+                        @else
+                            <li>
+                            	<a href="dangnhap"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</a>
+                            </li>
+                            <li>
+                            	<a href="dangky"><span class="glyphicon glyphicon-plus"></span> Đăng ký</a>
                             </li>
                         @endif
-                        <li>
-                            <a href="dangxuat"><span class="glyphicon glyphicon-log-out"></span> Đăng xuất</a>
-                        </li>
-                    @else
-                        <li>
-                        	<a href="dangnhap"><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</a>
-                        </li>
-                        <li>
-                        	<a href="dangky"><span class="glyphicon glyphicon-plus"></span> Đăng ký</a>
-                        </li>
-                    @endif
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

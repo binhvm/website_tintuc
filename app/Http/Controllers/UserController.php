@@ -74,14 +74,15 @@ class UserController extends Controller
     public function postDangNhapAdmin(Request $request)
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            $user = Auth::user();
-            if ($user->status == 1) {
-                return redirect('admin/user/danhsach');
-            }else{
+            if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1])){
+                return redirect('trangchu');
+            }
+            else{
+                Auth::logout();
                 return redirect()->back()->with('thongbao', 'Tài khoản bị khóa, vui lòng liên hệ nhà cung cấp để được trợ giúp.');
             }
         }else{
-            return redirect('admin/dangnhap')->with('thongbao', 'Email hoặc mật khẩu không đúng.');
+            return redirect()->back()->with('thongbao', 'Email hoặc mật khẩu không đúng.');
         }
     }
 
@@ -101,13 +102,15 @@ class UserController extends Controller
     public function postDangNhap(Request $request)
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            if (Auth::user()->status == 1) {
+            if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1])){
                 return redirect('trangchu');
-            }else{
+            }
+            else{
+                Auth::logout();
                 return redirect()->back()->with('thongbao', 'Tài khoản bị khóa, vui lòng liên hệ nhà cung cấp để được trợ giúp.');
             }
         }else{
-            return redirect('dangnhap')->with('thongbao', 'Email hoặc mật khẩu không đúng.');
+            return redirect()->back()->with('thongbao', 'Email hoặc mật khẩu không đúng.');
         }
     }
 

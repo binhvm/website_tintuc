@@ -54,7 +54,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Nội dung</label>
-                                <textarea id="demo" class="form-control ckeditor" name="NoiDung"></textarea>
+                                <textarea id="demo" class="form-control ckeditor" name="NoiDung" value="{{old('NoiDung')}}"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Hình ảnh</label>

@@ -20,6 +20,7 @@ class AdminLoginMiddleware
             if ($user->quyen == 1) {
                 return $next($request);
             }else{
+
                 return redirect()->back()->with('thongbao', 'Bạn không đủ quyền truy cập trang.');
             }
         }else{
