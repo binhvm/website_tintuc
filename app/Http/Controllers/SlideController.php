@@ -52,14 +52,14 @@ class SlideController extends Controller
 
     public function getSua($id)
     {
-    	$slide = Slide::find($id);
+    	$slide = Slide::findOrFail($id);
 
     	return view('admin.slide.sua', compact('slide'));
     }
 
     public function postSua(SlideRequest $request, $id)
     {
-    	$slide = Slide::find($id);
+    	$slide = Slide::findOrFail($id);
     	$slide->Ten = $request->Ten;
     	$slide->NoiDung = $request->NoiDung;
     	if ($request->has('link')) {
@@ -87,14 +87,14 @@ class SlideController extends Controller
 
     public function getXoa($id)
     {
-    	$slide = Slide::find($id);
+    	$slide = Slide::findOrFail($id);
 
     	return view('admin.slide.xoa', compact('slide'));
     }
 
     public function postXoa($id)
     {
-    	$slide = Slide::find($id);
+    	$slide = Slide::findOrFail($id);
     	$slide->delete();
 
     	return redirect('admin/slide/danhsach')->with('thongbao', 'Xóa thông tin slide thành công.');

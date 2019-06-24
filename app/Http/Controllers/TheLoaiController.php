@@ -23,41 +23,40 @@ class TheLoaiController extends Controller
     }
     public function postThem(TheLoaiRequest $request)
     {
-    	$theloai = new TheLoai;
-    	$theloai->Ten = $request->Ten;
-    	$theloai->TenKhongDau = changeTitle($request->Ten);
-    	$theloai->save();
+        $input = $request->only('Ten');
+        $input['TenKhongDau'] = changeTitle($request->Ten);
+        $theloai = TheLoai::create($input);
 
     	return redirect()->back()->with('thongbao', 'Thêm mới thể loại thành công.');
     }
 
     public function getSua($id)
     {
-    	$theloai = TheLoai::find($id);
+    	$theloai = TheLoai::findOrFail($id);
 	    
         return view('admin.theloai.sua', compact('theloai'));
     }
 
     public function postSua(TheLoaiRequest $request, $id)
     {
-        $theloai = TheLoai::find($id);
-        $theloai->Ten = $request->Ten;
-        $theloai->TenKhongDau = changeTitle($request->Ten);
-        $theloai->save();
+        $input = $request->only('Ten');
+        $input['TenKhongDau'] = changeTitle($request->Ten);
+        $theloai = TheLoai::findOrFail($id);
+        $theloai->update($input);
 
         return redirect('admin/theloai/sua/'.$id)->with('thongbao', 'Sửa thể loại thành công.');
     }
 
     public function getXoa($id)
     {
-    	$theloai = TheLoai::find($id);
+    	$theloai = TheLoai::findOrFail($id);
 	    
         return view('admin.theloai.xoa', compact('theloai'));
     }
 
     public function postXoa($id)
     {
-    	$theloai = TheLoai::find($id);
+    	$theloai = TheLoai::findOrFail($id);
         $theloai->delete();
         
         return redirect('admin/theloai/danhsach')->with('thongbao', 'Xóa thể loại thành công.');

@@ -31,13 +31,13 @@ class PagesController extends Controller
 
     function getLoaiTin($id)
     {
-        $loaitin = LoaiTin::find($id);
+        $loaitin = LoaiTin::findOrFail($id);
         $tintuc = TinTuc::where('idLoaiTin', $id)->paginate(5);
         return view('pages.loaitin', compact('loaitin', 'tintuc'));
     }
     function getTinTuc($id)
     {
-        $tintuc = TinTuc::find($id);
+        $tintuc = TinTuc::findOrFail($id);
         $tinnoibat = TinTuc::where('NoiBat', 1)->take(4)->get();
         $tinlienquan = TinTuc::where('idLoaiTin', $tintuc->idLoaiTin)->take(4)->get();
 

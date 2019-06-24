@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 //Route group admin
 Route::group(['prefix'=>'admin', 'middleware' => 'adminLogin'], function(){
+	
 	//Resource thể loại
 	Route::group(['prefix'=>'theloai'], function(){
 		Route::get('danhsach', 'TheLoaiController@getDanhSach');
@@ -66,7 +67,7 @@ Route::group(['prefix'=>'admin', 'middleware' => 'adminLogin'], function(){
 		Route::post('xoa/{id}', 'TinTucController@postXoa');
 	});
 
-	//Comment
+	//Quản lý comment
 	Route::group(['prefix'=>'comment'], function(){
 		Route::get('xoa/{id}/{idTinTuc}', 'CommentController@getXoa');
 	});
@@ -108,7 +109,6 @@ Route::get('lienhe', 'PagesController@getLienHe');
 Route::get('loaitin/{id}/{TenKhongDau}', 'PagesController@getLoaiTin');
 Route::get('tintuc/{id}/{TenKhongDau}', 'PagesController@getTinTuc');
 
-
 //Login, logout admin
 Route::get('admin/dangnhap', 'UserController@getDangNhapAdmin');
 Route::post('admin/dangnhap', 'UserController@postDangNhapAdmin'); 
@@ -130,5 +130,6 @@ Route::post('thongtintk/{id}', 'UserController@postSuaTK');
 //Search
 Route::get('timkiem', 'PagesController@getTimKiem');
 
+//Comment
 Route::post('comment', 'CommentController@postComment');
 Route::get('list-comment/{id}', 'CommentController@getComment');

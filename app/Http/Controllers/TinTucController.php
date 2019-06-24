@@ -28,7 +28,7 @@ class TinTucController extends Controller
 
     public function postPheDuyet($id)
     {
-        $tintuc = TinTuc::find($id);
+        $tintuc = TinTuc::findOrFail($id);
         $tintuc->PheDuyet = 1;
         $tintuc->save();
 
@@ -74,14 +74,14 @@ class TinTucController extends Controller
     {
     	$theloai = TheLoai::all();
     	$loaitin = LoaiTin::all();
-    	$tintuc = TinTuc::find($id);
+    	$tintuc = TinTuc::findOrFail($id);
 
     	return view('admin.tintuc.sua', compact('theloai', 'loaitin', 'tintuc'));
     }
 
-    public function postSua(TinTucRequest $request, $id)
+    public function postSua(Request $request, $id)
     {
-    	$tintuc = TinTuc::find($id);
+    	$tintuc = TinTuc::findOrFail($id);
     	$tintuc->TieuDe = $request->TieuDe;
     	$tintuc->TieuDeKhongDau = changeTitle($request->TieuDe);
     	$tintuc->TomTat = $request->TomTat;
@@ -113,14 +113,14 @@ class TinTucController extends Controller
     {
     	$theloai = TheLoai::all();
     	$loaitin = LoaiTin::all();
-    	$tintuc = TinTuc::find($id);
+    	$tintuc = TinTuc::findOrFail($id);
 
     	return view('admin.tintuc.xoa', compact('theloai', 'loaitin', 'tintuc'));
     }
 
     public function postXoa($id)
     {
-    	$tintuc = TinTuc::find($id);
+    	$tintuc = TinTuc::findOrFail($id);
     	$tintuc->delete();
 
     	return redirect('admin/tintuc/danhsach')->with('thongbao', 'Xóa tin tức thành công.');

@@ -151,8 +151,8 @@ class UserController extends Controller
         ], [
             'name.min' => 'Tên người dùng tối thiểu 5 ký tự.'
         ]);
-        $user = User::find($id);
-        $user->name = $request->name;
+
+        $input = $request->only('name');
         if($request->changePassword == "on"){
             $this->validate($request, [
                 'password' => 'min:8|max:32',
@@ -162,9 +162,11 @@ class UserController extends Controller
                 'passqord.max' => 'Mật khẩu tối đa 32 ký tự.',
                 'repassword.same' => 'Xác nhận mật khẩu không đúng.'
             ]);
-            $user->password = bcrypt($request->password);
+            $input['password'] = bcrypt($request->password);
         }
-        $user->save();
+
+        $user = User::findOrFail($id);
+        $user->update($input);
 
         return redirect()->back()->with('thongbao', 'Thay đổi thông tin người dùng thành công.');
     }

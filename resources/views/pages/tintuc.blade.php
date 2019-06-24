@@ -38,6 +38,7 @@
                 <div class="well">
                     <h5>Viết bình luận... <span class="glyphicon glyphicon-pencil"></span></h5>
                     <form role="form" method="POST" id="form_comment">
+                        @csrf
                         <div class="form-group">
                             <textarea class="form-control" rows="3" name="NoiDung" id="NoiDung"></textarea>
                             <input type="hidden" name="idTinTuc" id="idTinTuc" value="{{$tintuc->id}}">
@@ -136,13 +137,21 @@
 
         $(document).ready(function() {
             $('#form_comment').on('submit',function(event){
+                
+                //Không cho load trang
                 event.preventDefault();
+                
+                //Lấy toàn bộ value cho vào biến form_data
                 var form_data = $(this).serialize();
+                
+                //Kỹ thuật ajax
                 $.ajax({
                     url: "comment",
                     method: "POST",
                     data: form_data,
                     dataType:"JSON",
+
+                    //Nhận kết quả trả về từ Controller
                     success:function(data){
                         $("#data-comment").append(
                             '<div class="media">'+
@@ -153,6 +162,8 @@
                                 '</div>'+
                             '</div>'
                         );
+
+                        //Reset form sau khi comment
                         $('#form_comment')[0].reset();
                     }
                 });

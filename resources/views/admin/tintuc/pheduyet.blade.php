@@ -41,8 +41,8 @@
                                     <td>{{$tt->loaitin->theloai->Ten}}</td>
                                     <td>{{$tt->loaitin->Ten}}</td>
                                     <td>{{$tt->NoiBat}}</td>
-                                    <td class="center"><i class="fa fa-check"></i><a href="admin/tintuc/pheduyet/{{$tt->id}}"> Phê duyệt</a></td>
-                                    <td class="center"><i class="fa fa-trash-o fa-fw"></i><a href="admin/tintuc/xoa/{{$tt->id}}"> Xóa</a></td>
+                                    <td class="center"><a href="admin/tintuc/pheduyet/{{$tt->id}}"><input type="button" class="btn btn-success" value="Phê duyệt"></a></td>
+                                    <td class="center"><a href="admin/tintuc/xoa/{{$tt->id}}"><input type="button" class="btn btn-danger" value="Xóa"></a></td>
                                 </tr>
                             @endif
                             @endforeach

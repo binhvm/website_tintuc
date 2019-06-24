@@ -10,7 +10,7 @@ class CommentController extends Controller
     //
     public function getXoa($id, $idTinTuc)
     {
-    	$comment = Comment::find($id);
+    	$comment = Comment::findOrFail($id);
     	$comment->delete();
 
     	return redirect('admin/tintuc/sua/'.$idTinTuc)->with('thongbao', 'Xóa bình luận thành công.');
@@ -18,12 +18,9 @@ class CommentController extends Controller
 
     public function postComment(Request $request)
     {
-    	$comment = new Comment;
-    	$comment->idUser = $request->idUser;
+        $input = $request->only('idUser', 'idTinTuc', 'NoiDung');
     	$name = $request->User;
-    	$comment->idTinTuc = $request->idTinTuc;
-    	$comment->NoiDung = $request->NoiDung;
-    	$comment->save();
+        $comment = Comment::create($input);
 
         return json_encode(['comment' => $comment, 'name' => $name]);
     }
