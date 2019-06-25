@@ -45,7 +45,6 @@ class TinTucRequest extends FormRequest
             'NoiDung.required' => 'Bạn chưa nhập nội dung.',
             'NoiDung.max' => 'Nội dung tối đa 1000 ký tự.',
             'NoiDung.min' => 'Nội dung tối thiểu 50 ký tự.'
-
         ];
     }
 }

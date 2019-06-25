@@ -83,10 +83,10 @@
 @section('script')
     <script>
         $(document).ready(function(){
-            $("#TheLoai").change(function(){
+            $("#idTheLoai").change(function(){
                 var idTheLoai = $(this).val();
                 $.get("admin/ajax/loaitin/"+idTheLoai, function(data){
-                    $("#LoaiTin").html(data);
+                    $("#idLoaiTin").html(data);
                 });
             });
         });
