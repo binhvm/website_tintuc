@@ -48,6 +48,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Quyền: </label>
+                                @if($user->quyen != 2)
                                 <label class="radio-inline">
                                     <input type="radio" name="quyen" value="0" 
                                     @if($user->quyen == 0) {{"checked"}}
@@ -57,6 +58,13 @@
                                 <label class="radio-inline">
                                     <input type="radio" name="quyen" value="1"
                                     @if($user->quyen == 1) {{"checked"}}
+                                    @endif
+                                    >Cộng tác viên
+                                </label>
+                                @endif
+                                <label class="radio-inline">
+                                    <input type="radio" name="quyen" value="2"
+                                    @if($user->quyen == 2) {{"checked"}}
                                     @endif
                                     >Quản trị
                                 </label>
@@ -69,12 +77,14 @@
                                     @endif
                                     >Hoạt động
                                 </label>
+                                @if($user->quyen != 2)
                                 <label class="radio-inline">
                                     <input type="radio" name="status" value="0"
                                     @if($user->status == 0) {{"checked"}}
                                     @endif
                                     >Vô hiệu tài khoản
                                 </label>
+                                @endif
                             </div>
                             <button type="submit" class="btn btn-warning">Sửa</button>
                             <a href="admin/user/danhsach" class="btn btn-dark" role="button">Hủy</a>
