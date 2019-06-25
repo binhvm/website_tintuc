@@ -11,8 +11,8 @@
                         </h1>
                     </div>
                       
-                    @if(session('thongbao'))
-                        <div class="alert alert-danger">{{session('thongbao')}}</div>
+                    @if(session('notification'))
+                        <div class="alert alert-danger">{{session('notification')}}</div>
                     @endif
                     
                     <!-- /.col-lg-12 -->
@@ -22,21 +22,21 @@
                                 <th> STT</th>
                                 <th> Tên</th>
                                 <th> Tên không dấu</th>
-                                <th>Hành động</th>
-                                <th>Hành động</th>
+                                <th> Hành động</th>
+                                <th> Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($theloai as $tl)
+                            @foreach($categories as $category)
                             <tr class="odd gradeX" align="center">
-                                <td>{{$tl->id}}</td>
-                                <td>{{$tl->Ten}}</td>
-                                <td>{{$tl->TenKhongDau}}</td>
+                                <td>{{$category->id}}</td>
+                                <td>{{$category->Ten}}</td>
+                                <td>{{$category->TenKhongDau}}</td>
                                 <td>
-                                    <a href="admin/theloai/sua/{{$tl->id}}"><input type="button" class="btn btn-warning" id="btn_comment" value="Sửa"></a>
+                                    <a href="admin/categories/edit/{{$category->id}}"><input type="button" class="btn btn-warning" id="btn_comment" value="Sửa"></a>
                                 </td>
                                 <td>
-                                    <a href="admin/theloai/xoa/{{$tl->id}}"><input type="button" class="btn btn-danger" id="btn_comment" value="Xóa"></a>
+                                    <a href="admin/categories/delete/{{$category->id}}"><input type="button" class="btn btn-danger" id="btn_comment" value="Xóa"></a>
                                 </td>
                             </tr>
                             @endforeach

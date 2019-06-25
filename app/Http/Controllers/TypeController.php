@@ -11,62 +11,62 @@ use App\Category;
 class TypeController extends Controller
 {
     //Lấy danh sách
-    public function getDanhSach()
+    public function index()
     {
-    	$loaitin = Type::all();
-    	return view('admin.loaitin.danhsach', compact('loaitin'));
+    	$types = Type::all();
+    	return view('admin.types.list', compact('types'));
     }
 
     //Hiển thị view thêm loại tin
-    public function getThem()
+    public function create()
     {
-        $theloai = Category::all();
-    	return view('admin.loaitin.them', compact('theloai'));
+        $categories = Category::all();
+    	return view('admin.types.add', compact('categories'));
     }
 
     //Xử lý thêm loại tin
-    public function postThem(TypeRequest $request)
+    public function store(TypeRequest $request)
     {
         $input = $request->only('idTheLoai', 'Ten');
         $input['TenKhongDau'] = changeTitle($request->Ten);
-        $loaitin = Type::create($input);
+        $types = Type::create($input);
 
-        return redirect('admin/loaitin/them')->with('thongbao', 'Thêm mới loại tin thành công.');
+        return redirect('admin/types/add')->with('notification', 'Thêm mới loại tin thành công.');
     }
 
     //Hiển thị view sửa tin tức
-    public function getSua($id)
+    public function edit($id)
     {
-        $theloai = Category::all();
-        $loaitin = Type::findOrFail($id);
-        return view('admin.loaitin.sua', compact('loaitin', 'theloai'));
+        $categories = Category::all();
+        $types = Type::findOrFail($id);
+        return view('admin.types.edit', compact('types', 'categories'));
     }
 
     //Xử lý sửa tin tức
-    public function postSua(TypeRequest $request, $id)
+    public function update(TypeRequest $request, $id)
     {
-        $input = $request->only('Category', 'Ten');
+        $input = $request->only('idTheLoai', 'Ten');
         $input['TenKhongDau'] = changeTitle($request->Ten);
-        $loaitin = Type::findOrFail($id);
-        $loaitin->update($input);
+        $types = Type::findOrFail($id);
+        $types->update($input);
 
-        return redirect('admin/loaitin/sua/'.$id)->with('thongbao', 'Sửa loại tin thành công.');
+        return redirect('admin/types/edit/'.$id)->with('notification', 'Sửa loại tin thành công.');
     }
 
     //Hiển thị view xóa tin tức
-    public function getXoa($id)
+    public function delete($id)
     {
-        $theloai = Category::all();
-        $loaitin = Type::findOrFail($id);
-        return view('admin.loaitin.xoa', compact('loaitin', 'theloai'));
+        $categories = Category::all();
+        $types = Type::findOrFail($id);
+        return view('admin.types.delete', compact('types', 'categories'));
     }
 
     //Xử lý xóa tin tức
-    public function postXoa($id)
+    public function destroy($id)
     {
-        $loaitin = Type::findOrFail($id);
-        $loaitin->delete();
+        $types = Type::findOrFail($id);
+        $types->delete();
 
-        return redirect('admin/loaitin/danhsach')->with('thongbao', 'Xóa loại tin thành công.');
+        return redirect('admin/types/list')->with('notification', 'Xóa loại tin thành công.');
     }
 }

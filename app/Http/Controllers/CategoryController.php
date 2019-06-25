@@ -10,55 +10,55 @@ use App\Category;
 class CategoryController extends Controller
 {
     //
-    public function getDanhSach()
+    public function index()
     {
-    	$theloai = Category::all();
+        $categories = Category::all();
     	
-        return view('admin.theloai.danhsach', compact('theloai'));
+        return view('admin.categories.list', compact('categories'));
     }
 
-    public function getThem()
+    public function create()
     {
-    	return view('admin.theloai.them');
+    	return view('admin.categories.add');
     }
-    public function postThem(CategoryRequest $request)
-    {
-        $input = $request->only('Ten');
-        $input['TenKhongDau'] = changeTitle($request->Ten);
-        $theloai = Category::create($input);
-
-    	return redirect()->back()->with('thongbao', 'Thêm mới thể loại thành công.');
-    }
-
-    public function getSua($id)
-    {
-    	$theloai = Category::findOrFail($id);
-	    
-        return view('admin.theloai.sua', compact('theloai'));
-    }
-
-    public function postSua(CategoryRequest $request, $id)
+    public function store(CategoryRequest $request)
     {
         $input = $request->only('Ten');
         $input['TenKhongDau'] = changeTitle($request->Ten);
-        $theloai = Category::findOrFail($id);
-        $theloai->update($input);
+        $categories = Category::create($input);
 
-        return redirect('admin/theloai/sua/'.$id)->with('thongbao', 'Sửa thể loại thành công.');
+    	return redirect()->back()->with('notification', 'Thêm mới thể loại thành công.');
     }
 
-    public function getXoa($id)
+    public function edit($id)
     {
-    	$theloai = Category::findOrFail($id);
+    	$categories = Category::findOrFail($id);
 	    
-        return view('admin.theloai.xoa', compact('theloai'));
+        return view('admin.categories.edit', compact('categories'));
     }
 
-    public function postXoa($id)
+    public function update(CategoryRequest $request, $id)
     {
-    	$theloai = Category::findOrFail($id);
-        $theloai->delete();
+        $input = $request->only('Ten');
+        $input['TenKhongDau'] = changeTitle($request->Ten);
+        $categories = Category::findOrFail($id);
+        $categories->update($input);
+
+        return redirect('admin/categories/edit/'.$id)->with('notification', 'Sửa thể loại thành công.');
+    }
+
+    public function delete($id)
+    {
+    	$categories = Category::findOrFail($id);
+	    
+        return view('admin.categories.delete', compact('categories'));
+    }
+
+    public function destroy($id)
+    {
+    	$categories = Category::findOrFail($id);
+        $categories->delete();
         
-        return redirect('admin/theloai/danhsach')->with('thongbao', 'Xóa thể loại thành công.');
+        return redirect('admin/categories/list')->with('notification', 'Xóa thể loại thành công.');
     }
 }

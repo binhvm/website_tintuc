@@ -20,18 +20,18 @@
                             </div>
                         @endif
                         
-                        @if(session('thongbao'))
-                            <div class="alert alert-success">{{session('thongbao')}}</div>
+                        @if(session('notification'))
+                            <div class="alert alert-success">{{session('notification')}}</div>
                         @endif
 
-                        <form action="admin/loaitin/them" method="POST">
+                        <form action="admin/types/add" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label>Thể lọai</label>
                                 <select class="form-control" name="idTheLoai" required="">
                                     <option value="0">Vui lòng chọn thể loại</option>
-                                    @foreach($theloai as $tl)
-                                        <option value="{{$tl->id}}">{{$tl->Ten}}</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->Ten}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -40,7 +40,7 @@
                                 <input class="form-control" name="Ten" placeholder="Vui lòng nhập tên loại tin" value="{{old('Ten')}}" required="" />
                             </div>
                             <button type="submit" class="btn btn-success">Thêm</button>
-                            <a href="admin/loaitin/danhsach" class="btn btn-dark" role="button">Hủy</a>
+                            <a href="admin/types/list" class="btn btn-dark" role="button">Hủy</a>
                         <form>
                     </div>
                 </div>

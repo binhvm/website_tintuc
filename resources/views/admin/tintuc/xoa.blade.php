@@ -97,7 +97,7 @@
         $(document).ready(function(){
             $("#Category").change(function(){
                 var idTheLoai = $(this).val();
-                $.get("admin/ajax/loaitin/"+idTheLoai, function(data){
+                $.get("admin/ajax/types/"+idTheLoai, function(data){
                     $("#Type").html(data);
                 });
             });

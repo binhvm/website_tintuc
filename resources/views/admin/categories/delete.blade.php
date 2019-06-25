@@ -20,17 +20,17 @@
                             </div>
                         @endif
 
-                        @if(session('thongbao'))
-                            <div class="alert alert-success">{{session('thongbao')}}</div>
+                        @if(session('notification'))
+                            <div class="alert alert-success">{{session('notification')}}</div>
                         @endif
-                        <form action="admin/theloai/sua/{{$theloai->id}}" method="POST">
+                        <form action="admin/categories/delete/{{$categories->id}}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label>Tên thể loại:</label>
-                                <input class="form-control" name="Ten" placeholder="Vui lòng nhập tên thể loại" required="" value="{{$theloai->Ten}}" />
+                                <input class="form-control" name="Ten" placeholder="Vui lòng nhập tên thể loại" readonly value="{{$categories->Ten}}" />
                             </div>
-                            <button type="submit" class="btn btn-warning">Sửa</button>
-                            <a href="admin/theloai/danhsach" class="btn btn-dark" role="button">Hủy</a>
+                            <button type="submit" class="btn btn-danger">Xóa</button>
+                            <a href="admin/categories/list" class="btn btn-dark" role="button">Hủy</a>
                         <form>
                     </div>
                 </div>

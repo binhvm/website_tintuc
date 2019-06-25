@@ -24,31 +24,31 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 
     //Resource thể loại
-    Route::group(['prefix' => 'theloai', 'middleware' => 'superAdmin'], function () {
-        Route::get('danhsach', 'CategoryController@getDanhSach');
+    Route::group(['prefix' => 'categories', 'middleware' => 'superAdmin'], function () {
+        Route::get('list', 'CategoryController@index');
 
-        Route::get('them', 'CategoryController@getThem');
-        Route::post('them', 'CategoryController@postThem');
+        Route::get('add', 'CategoryController@create');
+        Route::post('add', 'CategoryController@store');
 
-        Route::get('sua/{id}', 'CategoryController@getSua');
-        Route::post('sua/{id}', 'CategoryController@postSua');
+        Route::get('edit/{id}', 'CategoryController@edit');
+        Route::post('edit/{id}', 'CategoryController@update');
 
-        Route::get('xoa/{id}', 'CategoryController@getXoa');
-        Route::post('xoa/{id}', 'CategoryController@postXoa');
+        Route::get('delete/{id}', 'CategoryController@delete');
+        Route::post('delete/{id}', 'CategoryController@destroy');
     });
 
     //Resource loại tin
-    Route::group(['prefix' => 'loaitin', 'middleware' => 'superAdmin'], function () {
-        Route::get('danhsach', 'TypeController@getDanhSach');
+    Route::group(['prefix' => 'types', 'middleware' => 'superAdmin'], function () {
+        Route::get('list', 'TypeController@index');
 
-        Route::get('them', 'TypeController@getThem');
-        Route::post('them', 'TypeController@postThem');
+        Route::get('add', 'TypeController@create');
+        Route::post('add', 'TypeController@store');
 
-        Route::get('sua/{id}', 'TypeController@getSua');
-        Route::post('sua/{id}', 'TypeController@postSua');
+        Route::get('edit/{id}', 'TypeController@edit');
+        Route::post('edit/{id}', 'TypeController@update');
 
-        Route::get('xoa/{id}', 'TypeController@getXoa');
-        Route::post('xoa/{id}', 'TypeController@postXoa');
+        Route::get('delete/{id}', 'TypeController@delete');
+        Route::post('delete/{id}', 'TypeController@destroy');
     });
 
     //Resource tin tức
@@ -100,14 +100,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 
     //Ajax
     Route::group(['prefix' => 'ajax'], function () {
-        Route::get('loaitin/{idTheLoai}', 'AjaxController@getLoaiTin');
+        Route::get('types/{idTheLoai}', 'AjaxController@getLoaiTin');
     });
 });
 
 //Home pages, infor pages
 Route::get('trangchu', 'PagesController@getTrangChu');
 Route::get('lienhe', 'PagesController@getLienHe');
-Route::get('loaitin/{id}/{TenKhongDau}', 'PagesController@getLoaiTin');
+Route::get('types/{id}/{TenKhongDau}', 'PagesController@getLoaiTin');
 Route::get('tintuc/{id}/{TenKhongDau}', 'PagesController@getTinTuc');
 
 //Login, logout admin

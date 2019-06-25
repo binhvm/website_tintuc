@@ -85,7 +85,7 @@
         $(document).ready(function(){
             $("#idTheLoai").change(function(){
                 var idTheLoai = $(this).val();
-                $.get("admin/ajax/loaitin/"+idTheLoai, function(data){
+                $.get("admin/ajax/types/"+idTheLoai, function(data){
                     $("#idLoaiTin").html(data);
                 });
             });

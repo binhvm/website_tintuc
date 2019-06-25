@@ -25,7 +25,7 @@ class TypeRequest extends FormRequest
     {
         return [
             //
-            'Ten'       => 'min:5|max:50|unique:loaitin'
+            'Ten'       => 'min:5|max:50|unique:types'
         ];
     }
 

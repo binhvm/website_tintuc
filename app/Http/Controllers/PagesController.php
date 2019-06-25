@@ -33,7 +33,7 @@ class PagesController extends Controller
     {
         $loaitin = Type::findOrFail($id);
         $tintuc = News::where('idLoaiTin', $id)->paginate(5);
-        return view('pages.loaitin', compact('loaitin', 'tintuc'));
+        return view('pages.types', compact('loaitin', 'tintuc'));
     }
     function getTinTuc($id)
     {

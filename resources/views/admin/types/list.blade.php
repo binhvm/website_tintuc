@@ -11,8 +11,8 @@
                         </h1>
                     </div>
 
-                    @if(session('thongbao'))
-                        <div class="alert alert-danger">{{session('thongbao')}}</div>
+                    @if(session('notification'))
+                        <div class="alert alert-danger">{{session('notification')}}</div>
                     @endif
                     
                     <!-- /.col-lg-12 -->
@@ -28,17 +28,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($loaitin as $lt)
+                            @foreach($types as $type)
                             <tr class="odd gradeX" align="center">
-                                <td>{{$lt->id}}</td>
-                                <td>{{$lt->theloai->Ten}}</td>
-                                <td>{{$lt->Ten}}</td>
-                                <td>{{$lt->TenKhongDau}}</td>
+                                <td>{{$type->id}}</td>
+                                <td>{{$type->theloai->Ten}}</td>
+                                <td>{{$type->Ten}}</td>
+                                <td>{{$type->TenKhongDau}}</td>
                                 <td>
-                                    <a href="admin/loaitin/sua/{{$lt->id}}"><input type="button" class="btn btn-warning" id="btn_comment" value="Sửa"></a>
+                                    <a href="admin/types/edit/{{$type->id}}"><input type="button" class="btn btn-warning" id="btn_comment" value="Sửa"></a>
                                 </td>
                                 <td>
-                                    <a href="admin/loaitin/xoa/{{$lt->id}}"><input type="button" class="btn btn-danger" id="btn_comment" value="Xóa"></a>
+                                    <a href="admin/types/delete/{{$type->id}}"><input type="button" class="btn btn-danger" id="btn_comment" value="Xóa"></a>
                                 </td>
                             </tr>
                             @endforeach
