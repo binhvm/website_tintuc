@@ -95,10 +95,10 @@
 @section('script')
     <script>
         $(document).ready(function(){
-            $("#TheLoai").change(function(){
+            $("#Category").change(function(){
                 var idTheLoai = $(this).val();
                 $.get("admin/ajax/loaitin/"+idTheLoai, function(data){
-                    $("#LoaiTin").html(data);
+                    $("#Type").html(data);
                 });
             });
         });

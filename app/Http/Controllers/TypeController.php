@@ -4,32 +4,32 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Http\Requests\LoaiTinRequest;
-use App\LoaiTin;
-use App\TheLoai;
+use App\Http\Requests\TypeRequest;
+use App\Type;
+use App\Category;
 
-class LoaiTinController extends Controller
+class TypeController extends Controller
 {
     //Lấy danh sách
     public function getDanhSach()
     {
-    	$loaitin = LoaiTin::all();
+    	$loaitin = Type::all();
     	return view('admin.loaitin.danhsach', compact('loaitin'));
     }
 
     //Hiển thị view thêm loại tin
     public function getThem()
     {
-        $theloai = TheLoai::all();
+        $theloai = Category::all();
     	return view('admin.loaitin.them', compact('theloai'));
     }
 
     //Xử lý thêm loại tin
-    public function postThem(LoaiTinRequest $request)
+    public function postThem(TypeRequest $request)
     {
         $input = $request->only('idTheLoai', 'Ten');
         $input['TenKhongDau'] = changeTitle($request->Ten);
-        $loaitin = LoaiTin::create($input);
+        $loaitin = Type::create($input);
 
         return redirect('admin/loaitin/them')->with('thongbao', 'Thêm mới loại tin thành công.');
     }
@@ -37,17 +37,17 @@ class LoaiTinController extends Controller
     //Hiển thị view sửa tin tức
     public function getSua($id)
     {
-        $theloai = TheLoai::all();
-        $loaitin = LoaiTin::findOrFail($id);
+        $theloai = Category::all();
+        $loaitin = Type::findOrFail($id);
         return view('admin.loaitin.sua', compact('loaitin', 'theloai'));
     }
 
     //Xử lý sửa tin tức
-    public function postSua(LoaiTinRequest $request, $id)
+    public function postSua(TypeRequest $request, $id)
     {
-        $input = $request->only('TheLoai', 'Ten');
+        $input = $request->only('Category', 'Ten');
         $input['TenKhongDau'] = changeTitle($request->Ten);
-        $loaitin = LoaiTin::findOrFail($id);
+        $loaitin = Type::findOrFail($id);
         $loaitin->update($input);
 
         return redirect('admin/loaitin/sua/'.$id)->with('thongbao', 'Sửa loại tin thành công.');
@@ -56,15 +56,15 @@ class LoaiTinController extends Controller
     //Hiển thị view xóa tin tức
     public function getXoa($id)
     {
-        $theloai = TheLoai::all();
-        $loaitin = LoaiTin::findOrFail($id);
+        $theloai = Category::all();
+        $loaitin = Type::findOrFail($id);
         return view('admin.loaitin.xoa', compact('loaitin', 'theloai'));
     }
 
     //Xử lý xóa tin tức
     public function postXoa($id)
     {
-        $loaitin = LoaiTin::findOrFail($id);
+        $loaitin = Type::findOrFail($id);
         $loaitin->delete();
 
         return redirect('admin/loaitin/danhsach')->with('thongbao', 'Xóa loại tin thành công.');

@@ -3,10 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\LoaiTin;
+use App\Type;
 use App\Comment;
 
-class TinTuc extends Model
+class News extends Model
 {
     //
     protected $table = "tintuc";
@@ -16,7 +16,7 @@ class TinTuc extends Model
 
     public function loaitin()
     {
-    	return $this->belongsTo('App\LoaiTin', 'idLoaiTin', 'id');
+    	return $this->belongsTo('App\Type', 'idLoaiTin', 'id');
     }
 
     public function comment()

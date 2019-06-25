@@ -4,31 +4,31 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Http\Requests\TinTucRequest;
+use App\Http\Requests\NewsRequest;
 use Illuminate\Support\Facades\Auth;
-use App\LoaiTin;
-use App\TheLoai;
-use App\TinTuc;
+use App\Type;
+use App\Category;
+use App\News;
 use App\Comment;
 
-class TinTucController extends Controller
+class NewsController extends Controller
 {
     //
     public function getDanhSach()
     {
-    	$tintuc = TinTuc::all();
+    	$tintuc = News::all();
     	return view('admin.tintuc.danhsach',compact('tintuc'));
     }
 
     public function getPheDuyet()
     {
-        $tintuc = TinTuc::all();
+        $tintuc = News::all();
         return view('admin.tintuc.pheduyet',compact('tintuc'));
     }
 
     public function postPheDuyet($id)
     {
-        $tintuc = TinTuc::findOrFail($id);
+        $tintuc = News::findOrFail($id);
         $tintuc->PheDuyet = 1;
         $tintuc->save();
 
@@ -37,12 +37,12 @@ class TinTucController extends Controller
 
     public function getThem()
     {
-    	$theloai = TheLoai::all();
-    	$loaitin = LoaiTin::all();
+    	$theloai = Category::all();
+    	$loaitin = Type::all();
     	return view('admin.tintuc.them', compact('theloai', 'loaitin'));
     }
 
-    public function postThem(TinTucRequest $request)
+    public function postThem(NewsRequest $request)
     {
         $input = $request->only('TieuDe', 'TomTat', 'NoiDung', 'Hinh', 'NoiBat', 'idLoaiTin');
         $input['TieuDeKhongDau'] = changeTitle($request->TieuDe);
@@ -65,23 +65,23 @@ class TinTucController extends Controller
     	}else{
     		$input['Hinh'] = "";
     	}
-    	$tintuc = TinTuc::create($input);
+    	$tintuc = News::create($input);
 
     	return redirect()->back()->with('thongbao', 'Thêm tin tức thành công, đang đợi phê duyệt.');
     }
 
     public function getSua($id)
     {
-    	$theloai = TheLoai::all();
-    	$loaitin = LoaiTin::all();
-    	$tintuc = TinTuc::findOrFail($id);
+    	$theloai = Category::all();
+    	$loaitin = Type::all();
+    	$tintuc = News::findOrFail($id);
 
     	return view('admin.tintuc.sua', compact('theloai', 'loaitin', 'tintuc'));
     }
 
     public function postSua(Request $request, $id)
     {
-    	$tintuc = TinTuc::findOrFail($id);
+    	$tintuc = News::findOrFail($id);
     	$tintuc->TieuDe = $request->TieuDe;
     	$tintuc->TieuDeKhongDau = changeTitle($request->TieuDe);
     	$tintuc->TomTat = $request->TomTat;
@@ -111,16 +111,16 @@ class TinTucController extends Controller
 
     public function getXoa($id)
     {
-    	$theloai = TheLoai::all();
-    	$loaitin = LoaiTin::all();
-    	$tintuc = TinTuc::findOrFail($id);
+    	$theloai = Category::all();
+    	$loaitin = Type::all();
+    	$tintuc = News::findOrFail($id);
 
     	return view('admin.tintuc.xoa', compact('theloai', 'loaitin', 'tintuc'));
     }
 
     public function postXoa($id)
     {
-    	$tintuc = TinTuc::findOrFail($id);
+    	$tintuc = News::findOrFail($id);
     	$tintuc->delete();
 
     	return redirect('admin/tintuc/danhsach')->with('thongbao', 'Xóa tin tức thành công.');

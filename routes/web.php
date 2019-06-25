@@ -1,5 +1,6 @@
 <?php
-use App\TheLoai;
+
+use App\Category;
 use App\Http\Middleware\AdminLoginMiddleware;
 
 /*
@@ -17,90 +18,90 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::resource('admin/theloai', 'TheLoaiController');
+// Route::resource('admin/theloai', 'CategoryController');
 
 //Route group admin
-Route::group(['prefix'=>'admin', 'middleware' => 'adminLogin'], function(){
-	
-	//Resource thể loại
-	Route::group(['prefix'=>'theloai', 'middleware' => 'superAdmin'], function(){
-		Route::get('danhsach', 'TheLoaiController@getDanhSach');
+Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 
-		Route::get('them', 'TheLoaiController@getThem');
-		Route::post('them', 'TheLoaiController@postThem');
+    //Resource thể loại
+    Route::group(['prefix' => 'theloai', 'middleware' => 'superAdmin'], function () {
+        Route::get('danhsach', 'CategoryController@getDanhSach');
 
-		Route::get('sua/{id}', 'TheLoaiController@getSua');
-		Route::post('sua/{id}', 'TheLoaiController@postSua');
+        Route::get('them', 'CategoryController@getThem');
+        Route::post('them', 'CategoryController@postThem');
 
-		Route::get('xoa/{id}', 'TheLoaiController@getXoa');
-		Route::post('xoa/{id}', 'TheLoaiController@postXoa');
-	});
+        Route::get('sua/{id}', 'CategoryController@getSua');
+        Route::post('sua/{id}', 'CategoryController@postSua');
 
-	//Resource loại tin
-	Route::group(['prefix'=>'loaitin', 'middleware' => 'superAdmin'], function(){
-		Route::get('danhsach', 'LoaiTinController@getDanhSach');
+        Route::get('xoa/{id}', 'CategoryController@getXoa');
+        Route::post('xoa/{id}', 'CategoryController@postXoa');
+    });
 
-		Route::get('them', 'LoaiTinController@getThem');
-		Route::post('them', 'LoaiTinController@postThem');
+    //Resource loại tin
+    Route::group(['prefix' => 'loaitin', 'middleware' => 'superAdmin'], function () {
+        Route::get('danhsach', 'TypeController@getDanhSach');
 
-		Route::get('sua/{id}', 'LoaiTinController@getSua');
-		Route::post('sua/{id}', 'LoaiTinController@postSua');
+        Route::get('them', 'TypeController@getThem');
+        Route::post('them', 'TypeController@postThem');
 
-		Route::get('xoa/{id}', 'LoaiTinController@getXoa');
-		Route::post('xoa/{id}', 'LoaiTinController@postXoa');
-	});
+        Route::get('sua/{id}', 'TypeController@getSua');
+        Route::post('sua/{id}', 'TypeController@postSua');
 
-	//Resource tin tức
-	Route::group(['prefix'=>'tintuc'], function(){
-		Route::get('danhsach', 'TinTucController@getDanhSach');
+        Route::get('xoa/{id}', 'TypeController@getXoa');
+        Route::post('xoa/{id}', 'TypeController@postXoa');
+    });
 
-		Route::get('pheduyet', 'TinTucController@getPheDuyet');
-		Route::get('pheduyet/{id}', 'TinTucController@postPheDuyet');
+    //Resource tin tức
+    Route::group(['prefix' => 'tintuc'], function () {
+        Route::get('danhsach', 'NewsController@getDanhSach');
 
-		Route::get('them', 'TinTucController@getThem');
-		Route::post('them', 'TinTucController@postThem');
+        Route::get('pheduyet', 'NewsController@getPheDuyet');
+        Route::get('pheduyet/{id}', 'NewsController@postPheDuyet');
 
-		Route::get('sua/{id}', 'TinTucController@getSua');
-		Route::post('sua/{id}', 'TinTucController@postSua');
+        Route::get('them', 'NewsController@getThem');
+        Route::post('them', 'NewsController@postThem');
 
-		Route::get('xoa/{id}', 'TinTucController@getXoa');
-		Route::post('xoa/{id}', 'TinTucController@postXoa');
-	});
+        Route::get('sua/{id}', 'NewsController@getSua');
+        Route::post('sua/{id}', 'NewsController@postSua');
 
-	//Quản lý comment
-	Route::group(['prefix'=>'comment'], function(){
-		Route::get('xoa/{id}/{idTinTuc}', 'CommentController@getXoa');
-	});
+        Route::get('xoa/{id}', 'NewsController@getXoa');
+        Route::post('xoa/{id}', 'NewsController@postXoa');
+    });
 
-	//Resource slide
-	Route::group(['prefix'=>'slide', 'middleware' => 'superAdmin'], function(){
-		Route::get('danhsach', 'SlideController@getDanhSach');
+    //Quản lý comment
+    Route::group(['prefix' => 'comment'], function () {
+        Route::get('xoa/{id}/{idTinTuc}', 'CommentController@getXoa');
+    });
 
-		Route::get('them', 'SlideController@getThem');
-		Route::post('them', 'SlideController@postThem');
+    //Resource slide
+    Route::group(['prefix' => 'slide', 'middleware' => 'superAdmin'], function () {
+        Route::get('danhsach', 'SlideController@getDanhSach');
 
-		Route::get('sua/{id}', 'SlideController@getSua');
-		Route::post('sua/{id}', 'SlideController@postSua');
+        Route::get('them', 'SlideController@getThem');
+        Route::post('them', 'SlideController@postThem');
 
-		Route::get('xoa/{id}', 'SlideController@getXoa');
-		Route::post('xoa/{id}', 'SlideController@postXoa');
-	});
+        Route::get('sua/{id}', 'SlideController@getSua');
+        Route::post('sua/{id}', 'SlideController@postSua');
 
-	//Resource user
-	Route::group(['prefix'=>'user', 'middleware' => 'superAdmin'], function(){
-		Route::get('danhsach', 'UserController@getDanhSach');
+        Route::get('xoa/{id}', 'SlideController@getXoa');
+        Route::post('xoa/{id}', 'SlideController@postXoa');
+    });
 
-		Route::get('them', 'UserController@getThem');
-		Route::post('them', 'UserController@postThem');
+    //Resource user
+    Route::group(['prefix' => 'user', 'middleware' => 'superAdmin'], function () {
+        Route::get('danhsach', 'UserController@getDanhSach');
 
-		Route::get('sua/{id}', 'UserController@getSua');
-		Route::post('sua/{id}', 'UserController@postSua');
-	});
+        Route::get('them', 'UserController@getThem');
+        Route::post('them', 'UserController@postThem');
 
-	//Ajax
-	Route::group(['prefix'=>'ajax'], function(){
-		Route::get('loaitin/{idTheLoai}', 'AjaxController@getLoaiTin');
-	});
+        Route::get('sua/{id}', 'UserController@getSua');
+        Route::post('sua/{id}', 'UserController@postSua');
+    });
+
+    //Ajax
+    Route::group(['prefix' => 'ajax'], function () {
+        Route::get('loaitin/{idTheLoai}', 'AjaxController@getLoaiTin');
+    });
 });
 
 //Home pages, infor pages
@@ -111,7 +112,7 @@ Route::get('tintuc/{id}/{TenKhongDau}', 'PagesController@getTinTuc');
 
 //Login, logout admin
 Route::get('admin/dangnhap', 'UserController@getDangNhapAdmin');
-Route::post('admin/dangnhap', 'UserController@postDangNhapAdmin'); 
+Route::post('admin/dangnhap', 'UserController@postDangNhapAdmin');
 Route::get('admin/dangxuat', 'UserController@getDangXuatAdmin');
 
 //Login, logout users

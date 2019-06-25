@@ -3,10 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\TheLoai;
-use App\TinTuc;
+use App\Category;
+use App\News;
 
-class LoaiTin extends Model
+class Type extends Model
 {
     //
     protected $table = "loaitin";
@@ -16,11 +16,11 @@ class LoaiTin extends Model
 
     public function theloai()
     {
-    	return $this->belongsTo('App\TheLoai', 'idTheLoai', 'id');
+    	return $this->belongsTo('App\Category', 'idTheLoai', 'id');
     }
 
     public function tintuc()
     {
-    	return $this->hasMany('App\TinTuc', 'idLoaiTin', 'id');
+    	return $this->hasMany('App\News', 'idLoaiTin', 'id');
     }
 }

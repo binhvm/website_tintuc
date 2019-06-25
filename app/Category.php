@@ -3,10 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\LoaiTin;
-use App\TinTuc;
+use App\Type;
+use App\News;
 
-class TheLoai extends Model
+class Category extends Model
 {
     //
     protected $table = "theloai";
@@ -16,11 +16,11 @@ class TheLoai extends Model
 
     public function loaitin()
     {
-    	return $this->hasMany('App\LoaiTin', 'idTheLoai', 'id');
+    	return $this->hasMany('App\Type', 'idTheLoai', 'id');
     }
 
     public function tintuc()
     {
-    	return $this->hasManyThrough('App\TinTuc', 'App\LoaiTin', 'idTheLoai', 'idLoaiTin');
+    	return $this->hasManyThrough('App\News', 'App\Type', 'idTheLoai', 'idLoaiTin');
     }
 }
