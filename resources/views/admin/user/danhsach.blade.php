@@ -36,8 +36,10 @@
                                 <td>
                                     @if($u->quyen == 0)
                                         {{"Thành viên"}}
+                                    @elseif($u->quyen == 1)
+                                        {{"Cộng tác viên"}}
                                     @else
-                                        {{"Quản trị"}}
+                                        {{"Quản trị viên"}}
                                     @endif
                                 </td>
                                 <td>

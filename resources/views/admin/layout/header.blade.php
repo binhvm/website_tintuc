@@ -13,7 +13,9 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-                <a href="admin/tintuc/pheduyet"><input type="button" class="btn btn-primary" id="btn_comment" value="Duyệt bài"></a>
+                @if(Auth::user()->quyen == 2)
+                    <a href="admin/tintuc/pheduyet"><input type="button" class="btn btn-primary" id="btn_comment" value="Duyệt bài"></a>
+                @endif
                 
                 <!-- /.dropdown -->
                 <li class="dropdown">
@@ -22,7 +24,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         @if(Auth::check())
-                        <li><a href="admin/user/sua/{{Auth::user()->id}}"><i class="fa fa-user fa-fw"></i> {{Auth::user()->name}}</a>
+                        <li><a><i class="fa fa-user fa-fw"></i> {{Auth::user()->name}}</a>
                         </li>
                         <li><a href="admin/user/sua/{{Auth::user()->id}}"><i class="fa fa-gear fa-fw"></i> Thông tin người dùng</a>
                         </li>

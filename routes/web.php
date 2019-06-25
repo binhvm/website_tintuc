@@ -23,7 +23,7 @@ Route::get('/', function () {
 Route::group(['prefix'=>'admin', 'middleware' => 'adminLogin'], function(){
 	
 	//Resource thể loại
-	Route::group(['prefix'=>'theloai'], function(){
+	Route::group(['prefix'=>'theloai', 'middleware' => 'superAdmin'], function(){
 		Route::get('danhsach', 'TheLoaiController@getDanhSach');
 
 		Route::get('them', 'TheLoaiController@getThem');
@@ -37,7 +37,7 @@ Route::group(['prefix'=>'admin', 'middleware' => 'adminLogin'], function(){
 	});
 
 	//Resource loại tin
-	Route::group(['prefix'=>'loaitin'], function(){
+	Route::group(['prefix'=>'loaitin', 'middleware' => 'superAdmin'], function(){
 		Route::get('danhsach', 'LoaiTinController@getDanhSach');
 
 		Route::get('them', 'LoaiTinController@getThem');
@@ -73,7 +73,7 @@ Route::group(['prefix'=>'admin', 'middleware' => 'adminLogin'], function(){
 	});
 
 	//Resource slide
-	Route::group(['prefix'=>'slide'], function(){
+	Route::group(['prefix'=>'slide', 'middleware' => 'superAdmin'], function(){
 		Route::get('danhsach', 'SlideController@getDanhSach');
 
 		Route::get('them', 'SlideController@getThem');
@@ -87,7 +87,7 @@ Route::group(['prefix'=>'admin', 'middleware' => 'adminLogin'], function(){
 	});
 
 	//Resource user
-	Route::group(['prefix'=>'user'], function(){
+	Route::group(['prefix'=>'user', 'middleware' => 'superAdmin'], function(){
 		Route::get('danhsach', 'UserController@getDanhSach');
 
 		Route::get('them', 'UserController@getThem');

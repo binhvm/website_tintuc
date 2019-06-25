@@ -48,10 +48,12 @@
                             </div>
                             <div class="form-group">
                                 <label>Quyền: </label>
-                                @if(Auth::user()->quyen == 1)
-                                	{{"Quản trị"}}
+                                @if(Auth::user()->quyen == 2)
+                                	{{"Quản trị viên"}}
+                                @elseif(Auth::user()->quyen == 1)
+                                	{{"Cộng tác viên"}}
                                 @else
-                                	{{"Thành viên"}}
+                                    {{"Thành viên"}}
                                 @endif
                             </div>
                             <button type="submit" class="btn btn-warning">Thay đổi</button>

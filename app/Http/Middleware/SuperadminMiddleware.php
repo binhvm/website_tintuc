@@ -2,9 +2,10 @@
 
 namespace App\Http\Middleware;
 use Illuminate\Support\Facades\Auth;
+
 use Closure;
 
-class AdminLoginMiddleware
+class SuperadminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,7 +18,7 @@ class AdminLoginMiddleware
     {
         if (Auth::check()) {
             $user = Auth::user();
-            if ($user->quyen == 1 || $user->quyen == 2) {
+            if ($user->quyen == 2) {
                 return $next($request);
             }else{
 

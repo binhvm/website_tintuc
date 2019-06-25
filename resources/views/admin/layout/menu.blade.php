@@ -15,6 +15,30 @@
                         <li>
                             <a><i class="fa fa-dashboard fa-fw"></i> Menu</a>
                         </li>
+                        @if(Auth::user()->quyen == 2)
+                        <li>
+                            <a href="#"><i class="fa fa-users fa-fw"></i> Người dùng<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="admin/user/danhsach"><i class="fa fa-list-ol" aria-hidden="true"></i> Danh sách</a>
+                                </li>
+                                <li>
+                                    <a href="admin/user/them"><i class="fa fa-plus-square" aria-hidden="true"></i> Thêm mới</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-cube fa-fw"></i> Slide<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="admin/slide/danhsach"><i class="fa fa-list-ol" aria-hidden="true"></i> Danh sách</a>
+                                </li>
+                                <li>
+                                    <a href="admin/slide/them"><i class="fa fa-plus-square" aria-hidden="true"></i> Thêm mới</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Thể loại<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -39,6 +63,7 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        @endif
                         <li>
                             <a href="#"><i class="fa fa-newspaper-o"></i> Tin tức<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -47,30 +72,6 @@
                                 </li>
                                 <li>
                                     <a href="admin/tintuc/them"><i class="fa fa-plus-square" aria-hidden="true"></i> Thêm mới</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-cube fa-fw"></i> Slide<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="admin/slide/danhsach"><i class="fa fa-list-ol" aria-hidden="true"></i> Danh sách</a>
-                                </li>
-                                <li>
-                                    <a href="admin/slide/them"><i class="fa fa-plus-square" aria-hidden="true"></i> Thêm mới</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i> Người dùng<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="admin/user/danhsach"><i class="fa fa-list-ol" aria-hidden="true"></i> Danh sách</a>
-                                </li>
-                                <li>
-                                    <a href="admin/user/them"><i class="fa fa-plus-square" aria-hidden="true"></i> Thêm mới</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

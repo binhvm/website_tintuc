@@ -37,6 +37,10 @@
                             </li>
                             @if(Auth::user()->quyen == 1)
                                 <li>
+                                    <a href="admin/tintuc/danhsach"><span class="glyphicon glyphicon-th"></span> Quản trị website</a>
+                                </li>
+                            @elseif(Auth::user()->quyen == 2)
+                                <li>
                                     <a href="admin/user/danhsach"><span class="glyphicon glyphicon-th"></span> Quản trị website</a>
                                 </li>
                             @endif
