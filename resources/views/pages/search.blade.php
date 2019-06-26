@@ -24,7 +24,7 @@
 	                    <div class="row-item row">
 	                        <div class="col-md-3">
 
-	                            <a href="tintuc/{{$tt->id}}/{{$tt->TieuDeKhongDau}}">
+	                            <a href="news/{{$tt->id}}/{{$tt->TieuDeKhongDau}}">
 	                                <br>
 	                                <img width="200px" height="200px" class="img-responsive img-rounded" src="upload/tintuc/{{$tt->Hinh}}" alt="">
 	                            </a>
@@ -33,7 +33,7 @@
 	                        <div class="col-md-9">
 	                            <h3>{!! doimau($tt->TieuDe, $key) !!}</h3>
 	                            <p>{!! doimau($tt->TomTat, $key)!!}</p>
-	                            <a class="btn btn-primary" href="tintuc/{{$tt->id}}/{{$tt->TieuDeKhongDau}}">Xem chi tiết <span class="glyphicon glyphicon-chevron-right"></span></a>
+	                            <a class="btn btn-primary" href="news/{{$tt->id}}/{{$tt->TieuDeKhongDau}}">Xem chi tiết <span class="glyphicon glyphicon-chevron-right"></span></a>
 	                        </div>
 	                        <div class="break"></div>
 	                    </div>
