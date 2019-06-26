@@ -3,6 +3,7 @@
 @section('content')
     <!-- Page Content -->
     <div class="container">
+
         @if(session('notification'))
             <div class="alert alert-danger">{{session('notification')}}</div>
         @endif
@@ -29,9 +30,14 @@
                 	{!! $news->NoiDung!!}
                 </p>
 
+                {{-- Like button --}}
+                <form role="form" method="POST" id="form_like">
+                    @csrf
+                    <input type="hidden" name="idUser" id="idUser" value="{{Auth::user()->id}}">
+                    <input type="hidden" name="idTinTuc" id="idTinTuc" value="{{$news->id}}">
+                    <input type="submit" id="btn_like" class="btn btn-primary" value="Thích">
+                </form>
                 <hr>
-
-                <!-- Blog Comments -->
 
                 <!-- Comments Form -->
                 @if(Auth::check())
@@ -117,9 +123,7 @@
                         <!-- end item -->
                     </div>
                 </div>
-                
             </div>
-
         </div>
         <!-- /.row -->
     </div>
@@ -135,6 +139,7 @@
             }
         });
 
+        //Ajax comment
         $(document).ready(function() {
             $('#form_comment').on('submit',function(event){
                 
@@ -165,6 +170,36 @@
 
                         //Reset form sau khi comment
                         $('#form_comment')[0].reset();
+                    }
+                });
+            });
+        });
+
+        //Ajax button like
+        $(document).ready(function() {
+            $('#form_like').on('submit',function(event){
+                
+                //Không cho load trang
+                event.preventDefault();
+                
+                //Lấy toàn bộ value cho vào biến form_data
+                var form_data = $(this).serialize();
+                
+                //Kỹ thuật ajax
+                $.ajax({
+                    url: "like",
+                    method: "POST",
+                    data: form_data,
+                    dataType:"JSON",
+
+                    //Nhận kết quả trả về từ Controller
+                    success:function(data){
+                        console.log(data);
+                        if (data['status'] == 1) {
+                            $("#btn_like").replaceWith('<input type="submit" id="btn_like" class="btn btn-danger" value="Không thích">');
+                        }else{
+                            $("#btn_like").replaceWith('<input type="submit" id="btn_like" class="btn btn-primary" value="Thích">');
+                        }
                     }
                 });
             });

@@ -118,7 +118,7 @@
                                 <td>{{$cm->NoiDung}}</td>
                                 <td>{{$cm->created_at}}</td>
                                 <td>
-                                    <a href="admin/comment/xoa/{{$cm->id}}/{{$news->id}}"><input type="button" class="btn btn-danger" id="btn_comment" value="Xóa"></a>
+                                    <a href="admin/comment/delete/{{$cm->id}}/{{$news->id}}"><input type="button" class="btn btn-danger" id="btn_comment" value="Xóa"></a>
                                 </td>
                             </tr>
                             @endforeach

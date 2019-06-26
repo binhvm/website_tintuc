@@ -70,7 +70,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 
     //Quản lý comment
     Route::group(['prefix' => 'comment'], function () {
-        Route::get('xoa/{id}/{idTinTuc}', 'CommentController@getXoa');
+        Route::get('delete/{id}/{idTinTuc}', 'CommentController@getDelete');
     });
 
     //Resource slide
@@ -134,3 +134,6 @@ Route::get('search', 'PagesController@getSearch');
 //Comment
 Route::post('comment', 'CommentController@postComment');
 Route::get('list-comment/{id}', 'CommentController@getComment');
+
+//Like
+Route::post('like', 'CommentController@postLike');
