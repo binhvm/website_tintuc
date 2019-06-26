@@ -4,8 +4,8 @@
     <!-- Page Content -->
 <div class="container">
 
-	@if(session('thongbao'))
-		<div class="alert alert-danger">{{session('thongbao')}}</div>
+	@if(session('notification'))
+		<div class="alert alert-danger">{{session('notification')}}</div>
 	@endif
 	
 	@include('layout.slide')
@@ -21,25 +21,25 @@
 	            	</div>
 
 	            	<div class="panel-body">
-	            		@foreach($theloai as $tl)
-	            			@if(count($tl->loaitin) > 0)
+	            		@foreach($categories as $category)
+	            			@if(count($category->loaitin) > 0)
 		            		<!-- item -->
 						    <div class="row-item row">
 			                	<h3>
-			                		{{$tl->Ten}} | 	
-			                		@foreach($tl->loaitin as $lt)
+			                		{{$category->Ten}} | 	
+			                		@foreach($category->loaitin as $lt)
 			                			@if(count($lt->tintuc) > 0)
 			                				<small><a href="loaitin/{{$lt->id}}/{{$lt->TenKhongDau}}"><i>{{$lt->Ten}}</i></a> |</small>
 			                			@endif
 			                		@endforeach
 			                	</h3>
 			                	<?php
-			                		$data = $tl->tintuc->where('NoiBat', 1)->sortByDesc('create_at')->take(5);
+			                		$data = $category->tintuc->where('NoiBat', 1)->sortByDesc('create_at')->take(5);
 			                		$tin1 = $data->shift();
 			                	?>
 			                	<div class="col-md-8 border-right">
 			                		<div class="col-md-5">
-				                        <a href="tintuc/{{$tin1['id']}}/{{$tin1['TieuDeKhongDau']}}.html">
+				                        <a href="news/{{$tin1['id']}}/{{$tin1['TieuDeKhongDau']}}.html">
 				                            <img class="img-responsive img-rounded" width="200px" src="upload/tintuc/{{$tin1['Hinh']}}" alt="">
 				                        </a>
 				                    </div>
@@ -47,13 +47,13 @@
 				                    <div class="col-md-7">
 				                        <h3>{{$tin1['TieuDe']}}</h3>
 				                        <p>{{$tin1['TomTat']}}</p>
-				                        <a class="btn btn-primary" href="tintuc/{{$tin1['id']}}/{{$tin1['TieuDeKhongDau']}}">Chi tiết <span class="glyphicon glyphicon-chevron-right"></span></a>
+				                        <a class="btn btn-primary" href="news/{{$tin1['id']}}/{{$tin1['TieuDeKhongDau']}}">Chi tiết <span class="glyphicon glyphicon-chevron-right"></span></a>
 									</div>
 			                	</div>
 			                    
 								<div class="col-md-4">
 									@foreach($data->all() as $dt)
-									<a href="tintuc/{{$dt['id']}}/{{$dt['TieuDeKhongDau']}}">
+									<a href="news/{{$dt['id']}}/{{$dt['TieuDeKhongDau']}}">
 										<h4>
 											<span class="glyphicon glyphicon-list-alt"></span>
 											{{$dt['TieuDe']}}

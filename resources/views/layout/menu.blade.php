@@ -3,15 +3,15 @@
                     <li href="#" class="list-group-item menu1 active">
                     	Danh sách
                     </li>
-					@foreach($theloai as $tl)
-                    @if(count($tl->loaitin) > 0)
+					@foreach($categories as $category)
+                    @if(count($category->loaitin) > 0)
                     <li href="#" class="list-group-item menu1">
-                    	{{$tl->Ten}}
+                    	{{$category->Ten}}
                     </li>
                     <ul>
-                    	@foreach($tl->loaitin as $lt)
+                    	@foreach($category->loaitin as $lt)
 	                		<li class="list-group-item">
-	                			<a href="loaitin/{{$lt->id}}/{{$lt->TenKhongDau}}">{{$lt->Ten}}</a>
+	                			<a href="types/{{$lt->id}}/{{$lt->TenKhongDau}}">{{$lt->Ten}}</a>
 	                		</li>
                 		@endforeach
                     </ul>

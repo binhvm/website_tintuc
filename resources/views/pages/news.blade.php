@@ -3,8 +3,8 @@
 @section('content')
     <!-- Page Content -->
     <div class="container">
-        @if(session('thongbao'))
-            <div class="alert alert-danger">{{session('thongbao')}}</div>
+        @if(session('notification'))
+            <div class="alert alert-danger">{{session('notification')}}</div>
         @endif
         <div class="row">
 
@@ -14,19 +14,19 @@
                 <!-- Blog Post -->
 
                 <!-- Title -->
-                <h1>{{$tintuc->TieuDe}}</h1>
+                <h1>{{$news->TieuDe}}</h1>
 
                 <!-- Preview Image -->
-                <img class="img-responsive img-rounded" src="upload/tintuc/{{$tintuc->Hinh}}" alt="">
+                <img class="img-responsive img-rounded" src="upload/tintuc/{{$news->Hinh}}" alt="">
 
                 <!-- Date/Time -->
-                <p><span class="glyphicon glyphicon-time"></span> Ngày đăng: {{$tintuc->created_at}}</p>
-                <p><span class="glyphicon glyphicon-time"></span> Chỉnh sửa lúc: {{$tintuc->updated_at}}</p>
+                <p><span class="glyphicon glyphicon-time"></span> Ngày đăng: {{$news->created_at}}</p>
+                <p><span class="glyphicon glyphicon-time"></span> Chỉnh sửa lúc: {{$news->updated_at}}</p>
                 <hr>
 
                 <!-- Post Content -->
                 <p class="lead">
-                	{!! $tintuc->NoiDung!!}
+                	{!! $news->NoiDung!!}
                 </p>
 
                 <hr>
@@ -41,7 +41,7 @@
                         @csrf
                         <div class="form-group">
                             <textarea class="form-control" rows="3" name="NoiDung" id="NoiDung"></textarea>
-                            <input type="hidden" name="idTinTuc" id="idTinTuc" value="{{$tintuc->id}}">
+                            <input type="hidden" name="idTinTuc" id="idTinTuc" value="{{$news->id}}">
                             <input type="hidden" name="idUser" id="idUser" value="{{Auth::user()->id}}">
                             <input type="hidden" name="User" id="User" value="{{Auth::user()->name}}">
                         </div>
@@ -55,7 +55,7 @@
 
                 <!-- Comment -->
                 <div id="data-comment">
-                    @foreach($tintuc->comment as $cm)
+                    @foreach($news->comment as $cm)
                         @if($cm->user->status == 1)
                             <div class="media">
                                 <div class="media-body list-comment">
@@ -80,12 +80,12 @@
                         @foreach($tinlienquan as $tlq)
                         <div class="row" style="margin-top: 10px;">
                             <div class="col-md-5">
-                                <a href="tintuc/{{$tlq->id}}/{{$tlq->TieuDeKhongDau}}">
+                                <a href="news/{{$tlq->id}}/{{$tlq->TieuDeKhongDau}}">
                                     <img class="img-responsive img-rounded" src="upload/tintuc/{{$tlq->Hinh}}" alt="">
                                 </a>
                             </div>
                             <div class="col-md-7">
-                                <a href="tintuc/{{$tlq->id}}/{{$tlq->TieuDeKhongDau}}"><b>{{$tlq->TieuDe}}</b></a>
+                                <a href="news/{{$tlq->id}}/{{$tlq->TieuDeKhongDau}}"><b>{{$tlq->TieuDe}}</b></a>
                             </div>
                             <p style="padding: 10px">{{$tlq->TomTat}}</p>
                             <div class="break"></div>
@@ -103,12 +103,12 @@
                         @foreach($tinnoibat as $tnb)
                         <div class="row" style="margin-top: 10px;">
                             <div class="col-md-5">
-                                <a href="tintuc/{{$tnb->id}}/{{$tnb->TieuDeKhongDau}}">
+                                <a href="news/{{$tnb->id}}/{{$tnb->TieuDeKhongDau}}">
                                     <img class="img-responsive img-rounded" src="upload/tintuc/{{$tnb->Hinh}}" alt="">
                                 </a>
                             </div>
                             <div class="col-md-7">
-                                <a href="tintuc/{{$tnb->id}}/{{$tnb->TieuDeKhongDau}}"><b>{{$tnb->TieuDe}}</b></a>
+                                <a href="news/{{$tnb->id}}/{{$tnb->TieuDeKhongDau}}"><b>{{$tnb->TieuDe}}</b></a>
                             </div>
                             <p style="padding: 10px">{{$tnb->TomTat}}</p>
                             <div class="break"></div>

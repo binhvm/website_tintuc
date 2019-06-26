@@ -13,42 +13,42 @@ class PagesController extends Controller
 {
     //Khởi tạo view share
 	function __construct(){
-		$theloai = Category::all();
+		$categories = Category::all();
 		$slide = Slide::all();
-		view()->share('theloai', $theloai);
+		view()->share('categories', $categories);
 		view()->share('slide', $slide);
 	}
 
-    public function getTrangChu()
+    public function Homepage()
     {
-    	return view('pages.trangchu');
+    	return view('pages.homepage');
     }
 
-    public function getLienHe()
+    public function getContact()
     {
-    	return view('pages.lienhe');
+    	return view('pages.contact');
     }
 
-    function getLoaiTin($id)
+    function getType($id)
     {
-        $loaitin = Type::findOrFail($id);
-        $tintuc = News::where('idLoaiTin', $id)->paginate(5);
-        return view('pages.types', compact('loaitin', 'tintuc'));
+        $types = Type::findOrFail($id);
+        $news = News::where('idLoaiTin', $id)->paginate(5);
+        return view('pages.type', compact('types', 'news'));
     }
-    function getTinTuc($id)
+    function getNews($id)
     {
-        $tintuc = News::findOrFail($id);
+        $news = News::findOrFail($id);
         $tinnoibat = News::where('NoiBat', 1)->take(4)->get();
-        $tinlienquan = News::where('idLoaiTin', $tintuc->idLoaiTin)->take(4)->get();
+        $tinlienquan = News::where('idLoaiTin', $news->idLoaiTin)->take(4)->get();
 
-        return view('pages.news', compact('tintuc', 'tinnoibat', 'tinlienquan'));
+        return view('pages.news', compact('news', 'tinnoibat', 'tinlienquan'));
     }
 
-    public function getTimKiem(Request $request)
+    public function getSearch(Request $request)
     {
-        $tukhoa = $request->timkiem;
-        $data = News::where('TieuDe', 'like', '%'.$tukhoa.'%')->orWhere('TomTat', 'like', '%'.$tukhoa.'%')->orWhere('NoiDung', 'like', '%'.$tukhoa.'%')->paginate(10);
-        $data->setPath('timkiem?');
-        return view('pages.timkiem', compact('data', 'tukhoa'));
+        $key = $request->search;
+        $data = News::where('TieuDe', 'like', '%'.$key.'%')->orWhere('TomTat', 'like', '%'.$key.'%')->orWhere('NoiDung', 'like', '%'.$key.'%')->paginate(10);
+        $data->setPath('search?');
+        return view('pages.search', compact('data', 'key'));
     }
 }

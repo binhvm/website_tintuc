@@ -9,14 +9,14 @@
     		<div class="col-md-4"></div>
             <div class="col-md-4">
 
-                	@if(session('thongbao'))
-                        <div class="alert alert-danger">{{session('thongbao')}}</div>
+                	@if(session('notification'))
+                        <div class="alert alert-danger">{{session('notification')}}</div>
                     @endif
 
                 <div class="panel panel-default">
 				  	<div class="panel-heading "><b>Đăng nhập</b></div>
 				  	<div class="panel-body">
-				    	<form action="dangnhap" method="POST">
+				    	<form action="login" method="POST">
 				    		@csrf
 							<div>
 				    			<label>Email</label>
@@ -29,7 +29,7 @@
 							</div>
 							<br>
 							<button type="submit" class="btn btn-success">Đăng nhập</button>
-							<a href="trangchu" class="btn btn-dark" role="button">Hủy</a>
+							<a href="homepage" class="btn btn-dark" role="button">Hủy</a>
 				    	</form>
 				  	</div>
 				</div>

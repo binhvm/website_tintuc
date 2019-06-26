@@ -105,10 +105,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 });
 
 //Home pages, infor pages
-Route::get('trangchu', 'PagesController@getTrangChu');
-Route::get('lienhe', 'PagesController@getLienHe');
-Route::get('types/{id}/{TenKhongDau}', 'PagesController@getLoaiTin');
-Route::get('news/{id}/{TenKhongDau}', 'PagesController@getTinTuc');
+Route::get('homepage', 'PagesController@Homepage');
+Route::get('contact', 'PagesController@getContact');
+Route::get('types/{id}/{TenKhongDau}', 'PagesController@getType');
+Route::get('news/{id}/{TenKhongDau}', 'PagesController@getNews');
 
 //Login, logout admin
 Route::get('admin/dangnhap', 'UserController@getDangNhapAdmin');
@@ -116,20 +116,20 @@ Route::post('admin/dangnhap', 'UserController@postDangNhapAdmin');
 Route::get('admin/dangxuat', 'UserController@getDangXuatAdmin');
 
 //Login, logout users
-Route::get('dangnhap', 'UserController@getDangNhap');
-Route::post('dangnhap', 'UserController@postDangNhap');
-Route::get('dangxuat', 'UserController@getDangXuat');
+Route::get('login', 'UserController@getLogin');
+Route::post('login', 'UserController@postLogin');
+Route::get('logout', 'UserController@getLogout');
 
 //Register users
-Route::get('dangky', 'UserController@getDangKy');
-Route::post('dangky', 'UserController@postDangKy');
+Route::get('register', 'UserController@getRegister');
+Route::post('register', 'UserController@postRegister');
 
 //Detail users
-Route::get('thongtintk/{id}', 'UserController@getSuaTK');
-Route::post('thongtintk/{id}', 'UserController@postSuaTK');
+Route::get('account/{id}', 'UserController@getAccount');
+Route::post('account/{id}', 'UserController@postAccount');
 
 //Search
-Route::get('timkiem', 'PagesController@getTimKiem');
+Route::get('search', 'PagesController@getSearch');
 
 //Comment
 Route::post('comment', 'CommentController@postComment');

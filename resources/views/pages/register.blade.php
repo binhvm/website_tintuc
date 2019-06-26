@@ -16,13 +16,13 @@
                             </div>
                         @endif
 
-                	@if(session('thongbao'))
-                        <div class="alert alert-danger">{{session('thongbao')}}</div>
+                	@if(session('notification'))
+                        <div class="alert alert-danger">{{session('notification')}}</div>
                     @endif
                 <div class="panel panel-default">
 				  	<div class="panel-heading "><b>Đăng ký</b></div>
 				  	<div class="panel-body">
-				    	<form action="dangky" method="POST">
+				    	<form action="register" method="POST">
 				    		@csrf
 				    		<div>
 				    			<label>Họ tên</label>
@@ -45,7 +45,7 @@
 							</div>
 							<br>
 							<button type="submit" class="btn btn-success">Đăng ký</button>
-							<a href="trangchu" class="btn btn-dark" role="button">Hủy</a>
+							<a href="homepage" class="btn btn-dark" role="button">Hủy</a>
 				    	</form>
 				  	</div>
 				</div>

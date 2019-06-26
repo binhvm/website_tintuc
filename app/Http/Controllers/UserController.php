@@ -75,7 +75,7 @@ class UserController extends Controller
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1])){
-                return redirect('trangchu');
+                return redirect('homepage');
             }
             else{
                 Auth::logout();
@@ -90,20 +90,20 @@ class UserController extends Controller
     public function getDangXuatAdmin()
     {
         Auth::logout();
-        return redirect('admin/dangnhap');
+        return redirect('admin/login');
     }
 
     //Login users
-    public function getDangNhap()
+    public function getLogin()
     {
-        return view('pages.dangnhap');
+        return view('pages.login');
     }
 
-    public function postDangNhap(Request $request)
+    public function postLogin(Request $request)
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1])){
-                return redirect('trangchu');
+                return redirect('homepage');
             }
             else{
                 Auth::logout();
@@ -115,36 +115,36 @@ class UserController extends Controller
     }
 
     //Logout users
-    public function getDangXuat()
+    public function getLogout()
     {
         Auth::logout();
         return redirect()->back();
     }
 
     //Register users
-    public function getDangKy()
+    public function getRegister()
     {
-        return view('pages.dangky');
+        return view('pages.register');
     }
 
-    public function postDangKy(UserRequest $request)
+    public function postRegister(UserRequest $request)
     {
         $input = $request->only('name', 'email');
         $input['quyen'] = 0;
         $input['password'] = bcrypt($request->password);
-        $user = User::create($input);
+        $users = User::create($input);
 
-        return redirect('dangnhap')->with('notification', 'Đăng ký thành công.');
+        return redirect('login')->with('notification', 'Đăng ký thành công.');
     }
 
     //Detail accounts
-    public function getSuaTK($id)
+    public function getAccount($id)
     {
         $user = User::find($id);
-        return view('pages.nguoidung', compact('user'));
+        return view('pages.account', compact('user'));
     }
 
-    public function postSuaTK(Request $request, $id)
+    public function postAccount(Request $request, $id)
     {
         $this->validate($request, [
             'name' => 'min:5'
