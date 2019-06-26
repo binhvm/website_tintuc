@@ -38,10 +38,10 @@ class PagesController extends Controller
     function getNews($id)
     {
         $news = News::findOrFail($id);
-        $tinnoibat = News::where('NoiBat', 1)->take(4)->get();
+        $hotnews = News::where('NoiBat', 1)->take(4)->get();
         $tinlienquan = News::where('idLoaiTin', $news->idLoaiTin)->take(4)->get();
 
-        return view('pages.news', compact('news', 'tinnoibat', 'tinlienquan'));
+        return view('pages.news', compact('news', 'hotnews', 'tinlienquan'));
     }
 
     public function getSearch(Request $request)

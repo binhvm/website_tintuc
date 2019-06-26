@@ -100,7 +100,7 @@
                     <div class="panel-body">
 
                         <!-- item -->
-                        @foreach($tinnoibat as $tnb)
+                        @foreach($hotnews as $tnb)
                         <div class="row" style="margin-top: 10px;">
                             <div class="col-md-5">
                                 <a href="news/{{$tnb->id}}/{{$tnb->TieuDeKhongDau}}">

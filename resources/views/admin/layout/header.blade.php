@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand">Quản trị website</a>
-                <a class="navbar-brand" href="trangchu">Trang chủ</a>
+                <a class="navbar-brand" href="homepage">Trang chủ</a>
             </div>
             <!-- /.navbar-header -->
 
