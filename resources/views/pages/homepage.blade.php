@@ -27,9 +27,9 @@
 						    <div class="row-item row">
 			                	<h3>
 			                		{{$category->Ten}} | 	
-			                		@foreach($category->loaitin as $lt)
-			                			@if(count($lt->tintuc) > 0)
-			                				<small><a href="loaitin/{{$lt->id}}/{{$lt->TenKhongDau}}"><i>{{$lt->Ten}}</i></a> |</small>
+			                		@foreach($category->loaitin as $type)
+			                			@if(count($type->tintuc) > 0)
+			                				<small><a href="types/{{$type->id}}/{{$type->TenKhongDau}}"><i>{{$type->Ten}}</i></a> |</small>
 			                			@endif
 			                		@endforeach
 			                	</h3>
