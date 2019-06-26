@@ -8,7 +8,7 @@
             @include('layout.menu')
 
             <?php
-            function doimau($str, $key)
+            function changeColor($str, $key)
             {
                 return str_replace($key, "<span style= 'color: red;'>$key</span>", $str);
             }
@@ -31,8 +31,8 @@
 	                        </div>
 
 	                        <div class="col-md-9">
-	                            <h3>{!! doimau($tt->TieuDe, $key) !!}</h3>
-	                            <p>{!! doimau($tt->TomTat, $key)!!}</p>
+	                            <h3>{!! changeColor($tt->TieuDe, $key) !!}</h3>
+	                            <p>{!! changeColor($tt->TomTat, $key)!!}</p>
 	                            <a class="btn btn-primary" href="news/{{$tt->id}}/{{$tt->TieuDeKhongDau}}">Xem chi tiết <span class="glyphicon glyphicon-chevron-right"></span></a>
 	                        </div>
 	                        <div class="break"></div>

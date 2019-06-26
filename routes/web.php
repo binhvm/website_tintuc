@@ -111,9 +111,9 @@ Route::get('types/{id}/{TenKhongDau}', 'PagesController@getType');
 Route::get('news/{id}/{TenKhongDau}', 'PagesController@getNews');
 
 //Login, logout admin
-Route::get('admin/dangnhap', 'UserController@getDangNhapAdmin');
-Route::post('admin/dangnhap', 'UserController@postDangNhapAdmin');
-Route::get('admin/dangxuat', 'UserController@getDangXuatAdmin');
+Route::get('admin/login', 'UserController@getLoginAdmin');
+Route::post('admin/login', 'UserController@postLoginAdmin');
+Route::get('admin/logout', 'UserController@getLogoutAdmin');
 
 //Login, logout users
 Route::get('login', 'UserController@getLogin');

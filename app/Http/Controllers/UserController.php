@@ -28,7 +28,7 @@ class UserController extends Controller
         $input['password'] = bcrypt($request->password);
         $users = User::create($input);
 
-    	return redirect()->back()->with('notification', 'Thêm mới người dùng thành công.');
+    	return back()->with('notification', 'Thêm mới người dùng thành công.');
     }
 
     public function edit($id)
@@ -66,12 +66,12 @@ class UserController extends Controller
     }
 
     //Login Admin
-    public function getDangNhapAdmin()
+    public function getLoginAdmin()
     {
         return view('admin.login');
     }
 
-    public function postDangNhapAdmin(Request $request)
+    public function postLoginAdmin(Request $request)
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1])){
@@ -82,12 +82,12 @@ class UserController extends Controller
                 return redirect()->back()->with('notification', 'Tài khoản bị khóa, vui lòng liên hệ nhà cung cấp để được trợ giúp.');
             }
         }else{
-            return redirect()->back()->with('notification', 'Email hoặc mật khẩu không đúng.');
+            return back()->with('notification', 'Email hoặc mật khẩu không đúng.');
         }
     }
 
     //Logout admin
-    public function getDangXuatAdmin()
+    public function getLogoutAdmin()
     {
         Auth::logout();
         return redirect('admin/login');
