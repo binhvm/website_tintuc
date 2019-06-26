@@ -11,8 +11,8 @@
                         </h1>
                     </div>
 
-                    @if(session('thongbao'))
-                        <div class="alert alert-success">{{session('thongbao')}}</div>
+                    @if(session('notification'))
+                        <div class="alert alert-success">{{session('notification')}}</div>
                     @endif
                     
                     <!-- /.col-lg-12 -->
@@ -39,10 +39,10 @@
                                 </td>
                                 <td>{{$slide->link}}</td>
                                 <td>
-                                    <a href="admin/slide/sua/{{$slide->id}}"><input type="button" class="btn btn-warning" id="btn_comment" value="Sửa"></a>
+                                    <a href="admin/slide/edit/{{$slide->id}}"><input type="button" class="btn btn-warning" id="btn_edit" value="Sửa"></a>
                                 </td>
                                 <td>
-                                    <a href="admin/slide/xoa/{{$slide->id}}"><input type="button" class="btn btn-danger" id="btn_comment" value="Xóa"></a>
+                                    <a href="admin/slide/delete/{{$slide->id}}"><input type="button" class="btn btn-danger" id="btn_delete" value="Xóa"></a>
                                 </td>
                             </tr>
                             @endforeach

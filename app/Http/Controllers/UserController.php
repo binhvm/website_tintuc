@@ -10,34 +10,34 @@ use App\User;
 class UserController extends Controller
 {
     //
-    public function getDanhSach()
+    public function index()
     {
-    	$user = User::all();
+    	$users = User::all();
 
-    	return view('admin.user.danhsach', compact('user'));
+    	return view('admin.user.list', compact('users'));
     }
 
-    public function getThem()
+    public function create()
     {
-    	return view('admin.user.them');
+    	return view('admin.user.add');
     }
 
-    public function postThem(UserRequest $request)
+    public function store(UserRequest $request)
     {
         $input = $request->only('name', 'email', 'quyen');
         $input['password'] = bcrypt($request->password);
-        $user = User::create($input);
+        $users = User::create($input);
 
-    	return redirect()->back()->with('thongbao', 'Thêm mới người dùng thành công.');
+    	return redirect()->back()->with('notification', 'Thêm mới người dùng thành công.');
     }
 
-    public function getSua($id)
+    public function edit($id)
     {
-    	$user = User::findOrFail($id);
-    	return view('admin.user.sua', compact('user'));
+    	$users = User::findOrFail($id);
+    	return view('admin.user.edit', compact('users'));
     }
 
-    public function postSua(Request $request, $id)
+    public function update(Request $request, $id)
     {
     	$this->validate($request, [
     		'name' => 'min:5'
@@ -59,10 +59,10 @@ class UserController extends Controller
     		$input['password'] = bcrypt($request->password);
     	}
 
-        $user = User::findOrFail($id);
-    	$user->update($input);
+        $users = User::findOrFail($id);
+    	$users->update($input);
 
-    	return redirect()->back()->with('thongbao', 'Sửa thông tin người dùng thành công.');
+    	return redirect()->back()->with('notification', 'Sửa thông tin người dùng thành công.');
     }
 
     //Login Admin
@@ -79,10 +79,10 @@ class UserController extends Controller
             }
             else{
                 Auth::logout();
-                return redirect()->back()->with('thongbao', 'Tài khoản bị khóa, vui lòng liên hệ nhà cung cấp để được trợ giúp.');
+                return redirect()->back()->with('notification', 'Tài khoản bị khóa, vui lòng liên hệ nhà cung cấp để được trợ giúp.');
             }
         }else{
-            return redirect()->back()->with('thongbao', 'Email hoặc mật khẩu không đúng.');
+            return redirect()->back()->with('notification', 'Email hoặc mật khẩu không đúng.');
         }
     }
 
@@ -107,10 +107,10 @@ class UserController extends Controller
             }
             else{
                 Auth::logout();
-                return redirect()->back()->with('thongbao', 'Tài khoản bị khóa, vui lòng liên hệ nhà cung cấp để được trợ giúp.');
+                return redirect()->back()->with('notification', 'Tài khoản bị khóa, vui lòng liên hệ nhà cung cấp để được trợ giúp.');
             }
         }else{
-            return redirect()->back()->with('thongbao', 'Email hoặc mật khẩu không đúng.');
+            return redirect()->back()->with('notification', 'Email hoặc mật khẩu không đúng.');
         }
     }
 
@@ -134,7 +134,7 @@ class UserController extends Controller
         $input['password'] = bcrypt($request->password);
         $user = User::create($input);
 
-        return redirect('dangnhap')->with('thongbao', 'Đăng ký thành công.');
+        return redirect('dangnhap')->with('notification', 'Đăng ký thành công.');
     }
 
     //Detail accounts
@@ -168,6 +168,6 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->update($input);
 
-        return redirect()->back()->with('thongbao', 'Thay đổi thông tin người dùng thành công.');
+        return redirect()->back()->with('notification', 'Thay đổi thông tin người dùng thành công.');
     }
 }

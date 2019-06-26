@@ -9,18 +9,18 @@ use App\Http\Requests\SlideRequest;
 class SlideController extends Controller
 {
     //
-    public function getDanhSach()
+    public function index()
     {
     	$slide = Slide::all();
-    	return view('admin.slide.danhsach', compact('slide'));
+    	return view('admin.slide.list', compact('slide'));
     }
 
-    public function getThem()
+    public function create()
     {
-    	return view('admin.slide.them');
+    	return view('admin.slide.add');
     }
 
-    public function postThem(SlideRequest $request)
+    public function store(SlideRequest $request)
     {
     	$slide = new Slide;
     	$slide->Ten = $request->Ten;
@@ -33,7 +33,7 @@ class SlideController extends Controller
     		$file = $request->file('Hinh');
     		$duoi = $file->getClientOriginalExtension();
     		if ($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg') {
-    			return redirect('admin/slide/them')->with('thongbao', 'Ảnh phải có định dạng: jpg, png hoặc jpeg.');
+    			return back()->with('notification', 'Ảnh phải có định dạng: jpg, png hoặc jpeg.');
     		}
     		$name = $file->getClientOriginalName();
     		$Hinh = str_random(5)."_". $name;
@@ -47,17 +47,17 @@ class SlideController extends Controller
     	}
     	$slide->save();
 
-    	return redirect('admin/slide/them')->with('thongbao', 'Thêm mới slide thành công.');
+    	return back()->with('notification', 'Thêm mới slide thành công.');
     }
 
-    public function getSua($id)
+    public function edit($id)
     {
     	$slide = Slide::findOrFail($id);
 
-    	return view('admin.slide.sua', compact('slide'));
+    	return view('admin.slide.edit', compact('slide'));
     }
 
-    public function postSua(SlideRequest $request, $id)
+    public function update(SlideRequest $request, $id)
     {
     	$slide = Slide::findOrFail($id);
     	$slide->Ten = $request->Ten;
@@ -69,7 +69,7 @@ class SlideController extends Controller
     		$file = $request->file('Hinh');
     		$duoi = $file->getClientOriginalExtension();
     		if ($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg') {
-    			return redirect('admin/slide/them')->with('thongbao', 'Ảnh phải có định dạng: jpg, png hoặc jpeg.');
+    			return back()->with('notification', 'Ảnh phải có định dạng: jpg, png hoặc jpeg.');
     		}
     		$name = $file->getClientOriginalName();
     		$Hinh = str_random(5)."_". $name;
@@ -82,21 +82,21 @@ class SlideController extends Controller
     	}
     	$slide->save();
 
-    	return redirect('admin/slide/sua/'.$id)->with('thongbao', 'Sửa thông tin slide thành công.');
+    	return back()->with('notification', 'Sửa thông tin slide thành công.');
     }
 
-    public function getXoa($id)
+    public function delete($id)
     {
     	$slide = Slide::findOrFail($id);
 
-    	return view('admin.slide.xoa', compact('slide'));
+    	return view('admin.slide.delete', compact('slide'));
     }
 
-    public function postXoa($id)
+    public function destroy($id)
     {
     	$slide = Slide::findOrFail($id);
     	$slide->delete();
 
-    	return redirect('admin/slide/danhsach')->with('thongbao', 'Xóa thông tin slide thành công.');
+    	return redirect('admin/slide/list')->with('notification', 'Xóa thông tin slide thành công.');
     }
 }

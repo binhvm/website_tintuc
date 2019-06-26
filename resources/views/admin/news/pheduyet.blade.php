@@ -7,12 +7,12 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Tin tức
-                            <small>Danh sách</small>
+                            <small>Danh sách chờ phê duyệt</small>
                         </h1>
                     </div>
 
-                    @if(session('thongbao'))
-                        <div class="alert alert-danger">{{session('thongbao')}}</div>
+                    @if(session('notification'))
+                        <div class="alert alert-danger">{{session('notification')}}</div>
                     @endif
                     
                     <!-- /.col-lg-12 -->
@@ -24,31 +24,25 @@
                                 <th>Tóm tắt</th>
                                 <th>Thể loại</th>
                                 <th>Loại tin</th>
-                                <th>Xem</th>
                                 <th>Nổi bật</th>
                                 <th>Hành động</th>
                                 <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($tintuc as $tt)
-                            @if($tt->PheDuyet == 1)
+                            @foreach($news as $news)
+                            @if($news->PheDuyet == 0)
                                 <tr class="odd gradeX" align="center">
-                                    <td>{{$tt->id}}</td>
+                                    <td>{{$news->id}}</td>
                                     <td>
-                                        <img width="50px" height="50px" class="img-rounded" src="upload/tintuc/{{$tt->Hinh}}"><br>
-                                        {{$tt->TieuDe}}</td>
-                                    <td>{{$tt->TomTat}}</td>
-                                    <td>{{$tt->loaitin->theloai->Ten}}</td>
-                                    <td>{{$tt->loaitin->Ten}}</td>
-                                    <td>{{$tt->SoLuotXem}}</td>
-                                    <td>{{$tt->NoiBat}}</td>
-                                    <td>
-                                        <a href="admin/tintuc/sua/{{$tt->id}}"><input type="button" class="btn btn-warning" id="btn_comment" value="Sửa"></a>
-                                    </td>
-                                    <td>
-                                        <a href="admin/tintuc/xoa/{{$tt->id}}"><input type="button" class="btn btn-danger" id="btn_comment" value="Xóa"></a>
-                                    </td>
+                                        <img width="50px" height="50px" class="img-rounded" src="upload/tintuc/{{$news->Hinh}}"><br>
+                                        {{$news->TieuDe}}</td>
+                                    <td>{{$news->TomTat}}</td>
+                                    <td>{{$news->loaitin->theloai->Ten}}</td>
+                                    <td>{{$news->loaitin->Ten}}</td>
+                                    <td>{{$news->NoiBat}}</td>
+                                    <td class="center"><a href="admin/news/pheduyet/{{$news->id}}"><input type="button" class="btn btn-success" value="Phê duyệt"></a></td>
+                                    <td class="center"><a href="admin/news/delete/{{$news->id}}"><input type="button" class="btn btn-danger" value="Xóa"></a></td>
                                 </tr>
                             @endif
                             @endforeach

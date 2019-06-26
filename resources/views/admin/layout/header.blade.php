@@ -14,7 +14,7 @@
 
             <ul class="nav navbar-top-links navbar-right">
                 @if(Auth::user()->quyen == 2)
-                    <a href="admin/tintuc/pheduyet"><input type="button" class="btn btn-primary" id="btn_comment" value="Duyệt bài"></a>
+                    <a href="admin/news/pheduyet"><input type="button" class="btn btn-primary" id="btn_comment" value="Duyệt bài"></a>
                 @endif
                 
                 <!-- /.dropdown -->

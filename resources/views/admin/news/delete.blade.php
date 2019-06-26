@@ -20,68 +20,68 @@
                             </div>
                         @endif
                         
-                        @if(session('thongbao'))
-                            <div class="alert alert-success">{{session('thongbao')}}</div>
+                        @if(session('notification'))
+                            <div class="alert alert-success">{{session('notification')}}</div>
                         @endif
 
-                        <form action="admin/tintuc/xoa/{{$tintuc->id}}" method="POST" enctype="multipart/form-data">
+                        <form action="admin/news/delete/{{$news->id}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label>Thể lọai</label>
                                 <select class="form-control" name="TheLoai" id="TheLoai">
-                                    @foreach($theloai as $tl)
+                                    @foreach($categories as $caregory)
                                         <option 
-                                        @if($tintuc->loaitin->theloai->id == $tl->id)
+                                        @if($news->loaitin->theloai->id == $caregory->id)
                                             {{"selected"}}
                                         @endif
-                                        value="{{$tl->id}}">{{$tl->Ten}}</option>
+                                        value="{{$caregory->id}}">{{$caregory->Ten}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Loại tin</label>
                                 <select class="form-control" name="LoaiTin" id="LoaiTin">
-                                    @foreach($loaitin as $lt)
+                                    @foreach($types as $type)
                                         <option
-                                        @if($tintuc->loaitin->id == $lt->id)
+                                        @if($news->loaitin->id == $type->id)
                                             {{"selected"}}
                                         @endif 
-                                        value="{{$lt->id}}">{{$lt->Ten}}</option>
+                                        value="{{$type->id}}">{{$type->Ten}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Tiêu đề</label>
-                                <input class="form-control" readonly="" value="{{$tintuc->TieuDe}}"/>
+                                <input class="form-control" readonly="" value="{{$news->TieuDe}}"/>
                             </div>
                             <div class="form-group">
                                 <label>Tóm tắt</label>
-                                <input class="form-control" readonly="" value="{{$tintuc->TomTat}}"/>
+                                <input class="form-control" readonly="" value="{{$news->TomTat}}"/>
                             </div>
                             <div class="form-group">
                                 <label>Nội dung</label>
                                 <textarea id="demo" class="form-control" readonly="">
-                                    {{$tintuc->NoiDung}}
+                                    {{$news->NoiDung}}
                                 </textarea>
                             </div>
                             <div class="form-group">
                                 <label>Hình ảnh</label><br>
-                                <img class="img-rounded" width="300px" src="upload/tintuc/{{$tintuc->Hinh}}">
+                                <img class="img-rounded" width="300px" src="upload/tintuc/{{$news->Hinh}}">
                             </div>
                             <label>Nổi bật: </label>
-                            @if($tintuc->NoiBat == 0)
+                            @if($news->NoiBat == 0)
                             {{"Không"}}
                             @else
                             {{"Có"}}
                             @endif
                              {{-- <input type="radio" name="NoiBat" value="0"
-                                @if($tintuc->NoiBat == 0)
+                                @if($news->NoiBat == 0)
                                     {{"checked"}}
                                 @endif
                                 >Không --}}
                             <br>
                             <button type="submit" class="btn btn-danger">Xóa</button>
-                            <a href="admin/tintuc/danhsach" class="btn btn-dark" role="button">Hủy</a>
+                            <a href="admin/news/list" class="btn btn-dark" role="button">Hủy</a>
                         <form>
                     </div>
                 </div>

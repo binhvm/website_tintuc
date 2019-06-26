@@ -52,20 +52,20 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
     });
 
     //Resource tin tức
-    Route::group(['prefix' => 'tintuc'], function () {
-        Route::get('danhsach', 'NewsController@getDanhSach');
+    Route::group(['prefix' => 'news'], function () {
+        Route::get('list', 'NewsController@index');
 
         Route::get('pheduyet', 'NewsController@getPheDuyet');
         Route::get('pheduyet/{id}', 'NewsController@postPheDuyet');
 
-        Route::get('them', 'NewsController@getThem');
-        Route::post('them', 'NewsController@postThem');
+        Route::get('add', 'NewsController@create');
+        Route::post('add', 'NewsController@store');
 
-        Route::get('sua/{id}', 'NewsController@getSua');
-        Route::post('sua/{id}', 'NewsController@postSua');
+        Route::get('edit/{id}', 'NewsController@edit');
+        Route::post('edit/{id}', 'NewsController@update');
 
-        Route::get('xoa/{id}', 'NewsController@getXoa');
-        Route::post('xoa/{id}', 'NewsController@postXoa');
+        Route::get('delete/{id}', 'NewsController@delete');
+        Route::post('delete/{id}', 'NewsController@destroy');
     });
 
     //Quản lý comment
@@ -75,27 +75,27 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 
     //Resource slide
     Route::group(['prefix' => 'slide', 'middleware' => 'superAdmin'], function () {
-        Route::get('danhsach', 'SlideController@getDanhSach');
+        Route::get('list', 'SlideController@index');
 
-        Route::get('them', 'SlideController@getThem');
-        Route::post('them', 'SlideController@postThem');
+        Route::get('add', 'SlideController@create');
+        Route::post('add', 'SlideController@store');
 
-        Route::get('sua/{id}', 'SlideController@getSua');
-        Route::post('sua/{id}', 'SlideController@postSua');
+        Route::get('edit/{id}', 'SlideController@edit');
+        Route::post('edit/{id}', 'SlideController@update');
 
-        Route::get('xoa/{id}', 'SlideController@getXoa');
-        Route::post('xoa/{id}', 'SlideController@postXoa');
+        Route::get('delete/{id}', 'SlideController@delete');
+        Route::post('delete/{id}', 'SlideController@destroy');
     });
 
     //Resource user
     Route::group(['prefix' => 'user', 'middleware' => 'superAdmin'], function () {
-        Route::get('danhsach', 'UserController@getDanhSach');
+        Route::get('list', 'UserController@index');
 
-        Route::get('them', 'UserController@getThem');
-        Route::post('them', 'UserController@postThem');
+        Route::get('add', 'UserController@create');
+        Route::post('add', 'UserController@store');
 
-        Route::get('sua/{id}', 'UserController@getSua');
-        Route::post('sua/{id}', 'UserController@postSua');
+        Route::get('edit/{id}', 'UserController@edit');
+        Route::post('edit/{id}', 'UserController@update');
     });
 
     //Ajax
@@ -108,7 +108,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 Route::get('trangchu', 'PagesController@getTrangChu');
 Route::get('lienhe', 'PagesController@getLienHe');
 Route::get('types/{id}/{TenKhongDau}', 'PagesController@getLoaiTin');
-Route::get('tintuc/{id}/{TenKhongDau}', 'PagesController@getTinTuc');
+Route::get('news/{id}/{TenKhongDau}', 'PagesController@getTinTuc');
 
 //Login, logout admin
 Route::get('admin/dangnhap', 'UserController@getDangNhapAdmin');

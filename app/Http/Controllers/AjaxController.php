@@ -13,9 +13,9 @@ class AjaxController extends Controller
     //
     public function getLoaiTin($idTheLoai)
     {
-    	$loaitin = Type::where('idTheLoai', $idTheLoai)->get();
-    	foreach ($loaitin as $lt) {
-    		echo "<option value='".$lt->id."'>".$lt->Ten."</option>";
+    	$types = Type::where('idTheLoai', $idTheLoai)->get();
+    	foreach ($types as $type) {
+    		echo "<option value='".$type->id."'>".$type->Ten."</option>";
     	}
     }
 }

@@ -20,30 +20,30 @@
                             </div>
                         @endif
                         
-                        @if(session('thongbao'))
-                            <div class="alert alert-success">{{session('thongbao')}}</div>
+                        @if(session('notification'))
+                            <div class="alert alert-success">{{session('notification')}}</div>
                         @endif
 
-                        <form action="admin/loaitin/xoa/{{$loaitin->id}}" method="POST">
+                        <form action="admin/types/delete/{{$types->id}}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label>Thể loại</label>
                                 <select class="form-control" name="TheLoai" >
-                                    @foreach($theloai as $tl)
+                                    @foreach($categories as $category)
                                         <option
-                                        @if($loaitin->idTheLoai == $tl->id)
+                                        @if($types->idTheLoai == $category->id)
                                             {{"selected"}}
                                         @endif
-                                        value="{{$tl->id}}">{{$tl->Ten}}</option>
+                                        value="{{$category->id}}">{{$category->Ten}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Tên loại tin</label>
-                                <input class="form-control" readonly value="{{$loaitin->Ten}}" />
+                                <input class="form-control" readonly value="{{$types->Ten}}" />
                             </div>
                             <button type="submit" class="btn btn-danger">Xóa</button>
-                            <a href="admin/loaitin/danhsach" class="btn btn-dark" role="button">Hủy</a>
+                            <a href="admin/types/list" class="btn btn-dark" role="button">Hủy</a>
                         <form>
                     </div>
                 </div>

@@ -23,19 +23,19 @@
                         @endif
                         
                         {{-- Hiển thị thông báo --}}
-                        @if(session('thongbao'))
-                            <div class="alert alert-success">{{session('thongbao')}}</div>
+                        @if(session('notification'))
+                            <div class="alert alert-success">{{session('notification')}}</div>
                         @endif
 
-                        <form action="admin/user/sua/{{$user->id}}" method="POST">
+                        <form action="admin/user/edit/{{$users->id}}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label>Tên người dùng</label>
-                                <input class="form-control" name="name" value="{{$user->name}}" />
+                                <input class="form-control" name="name" value="{{$users->name}}" />
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input class="form-control" name="email" value="{{$user->email}}" readonly />
+                                <input class="form-control" name="email" value="{{$users->email}}" readonly />
                             </div>
                             <div class="form-group">
                                 <input type="checkbox" name="changePassword" id="changePassword">
@@ -48,23 +48,23 @@
                             </div>
                             <div class="form-group">
                                 <label>Quyền: </label>
-                                @if($user->quyen != 2)
+                                @if($users->quyen != 2)
                                 <label class="radio-inline">
                                     <input type="radio" name="quyen" value="0" 
-                                    @if($user->quyen == 0) {{"checked"}}
+                                    @if($users->quyen == 0) {{"checked"}}
                                     @endif
                                     >Thành viên
                                 </label>
                                 <label class="radio-inline">
                                     <input type="radio" name="quyen" value="1"
-                                    @if($user->quyen == 1) {{"checked"}}
+                                    @if($users->quyen == 1) {{"checked"}}
                                     @endif
                                     >Cộng tác viên
                                 </label>
                                 @endif
                                 <label class="radio-inline">
                                     <input type="radio" name="quyen" value="2"
-                                    @if($user->quyen == 2) {{"checked"}}
+                                    @if($users->quyen == 2) {{"checked"}}
                                     @endif
                                     >Quản trị
                                 </label>
@@ -73,21 +73,21 @@
                                 <label>Trạng thái: </label>
                                 <label class="radio-inline">
                                     <input type="radio" name="status" value="1" 
-                                    @if($user->status == 1) {{"checked"}}
+                                    @if($users->status == 1) {{"checked"}}
                                     @endif
                                     >Hoạt động
                                 </label>
-                                @if($user->quyen != 2)
+                                @if($users->quyen != 2)
                                 <label class="radio-inline">
                                     <input type="radio" name="status" value="0"
-                                    @if($user->status == 0) {{"checked"}}
+                                    @if($users->status == 0) {{"checked"}}
                                     @endif
                                     >Vô hiệu tài khoản
                                 </label>
                                 @endif
                             </div>
                             <button type="submit" class="btn btn-warning">Sửa</button>
-                            <a href="admin/user/danhsach" class="btn btn-dark" role="button">Hủy</a>
+                            <a href="admin/user/list" class="btn btn-dark" role="button">Hủy</a>
                         <form>
                     </div>
                 </div>

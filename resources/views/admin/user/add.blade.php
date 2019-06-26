@@ -20,11 +20,11 @@
                             </div>
                         @endif
                         
-                        @if(session('thongbao'))
-                            <div class="alert alert-success">{{session('thongbao')}}</div>
+                        @if(session('notification'))
+                            <div class="alert alert-success">{{session('notification')}}</div>
                         @endif
 
-                        <form action="admin/user/them" method="POST">
+                        <form action="admin/user/add" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label>Tên người dùng</label>
@@ -48,11 +48,11 @@
                                     <input type="radio" name="quyen" value="0" checked>Thành viên
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="quyen" value="1">Quản trị
+                                    <input type="radio" name="quyen" value="1">Cộng tác viên
                                 </label>
                             </div>
                             <button type="submit" class="btn btn-success">Thêm</button>
-                            <a href="admin/user/danhsach" class="btn btn-dark" role="button">Hủy</a>
+                            <a href="admin/user/list" class="btn btn-dark" role="button">Hủy</a>
                         <form>
                     </div>
                 </div>

@@ -13,7 +13,7 @@ class CommentController extends Controller
     	$comment = Comment::findOrFail($id);
     	$comment->delete();
 
-    	return redirect('admin/tintuc/sua/'.$idTinTuc)->with('thongbao', 'Xóa bình luận thành công.');
+    	return redirect('admin/news/sua/'.$idTinTuc)->with('thongbao', 'Xóa bình luận thành công.');
     }
 
     public function postComment(Request $request)

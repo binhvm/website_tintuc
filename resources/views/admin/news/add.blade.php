@@ -20,18 +20,18 @@
                             </div>
                         @endif
                         
-                        @if(session('thongbao'))
-                            <div class="alert alert-success">{{session('thongbao')}}</div>
+                        @if(session('notification'))
+                            <div class="alert alert-success">{{session('notification')}}</div>
                         @endif
 
-                        <form action="admin/tintuc/them" method="POST" enctype="multipart/form-data">
+                        <form action="admin/news/add" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label>Thể lọai</label>
                                 <select class="form-control" name="idTheLoai" id="idTheLoai" required>
                                     <option>Vui lòng chọn thể loại</option>
-                                    @foreach($theloai as $tl)
-                                        <option value="{{$tl->id}}">{{$tl->Ten}}</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->Ten}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -39,8 +39,8 @@
                                 <label>Loại tin</label>
                                 <select class="form-control" name="idLoaiTin" id="idLoaiTin" required>
                                     <option>Vui lòng chọn loại tin</option>
-                                    @foreach($loaitin as $lt)
-                                        <option value="{{$lt->id}}">{{$lt->Ten}}</option>
+                                    @foreach($types as $type)
+                                        <option value="{{$type->id}}">{{$type->Ten}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -69,7 +69,7 @@
                             </label>
                             <br>
                             <button type="submit" class="btn btn-success">Thêm</button>
-                            <a href="admin/tintuc/danhsach" class="btn btn-dark" role="button">Hủy</a>
+                            <a href="admin/news/list" class="btn btn-dark" role="button">Hủy</a>
                         <form>
                     </div>
                 </div>

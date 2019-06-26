@@ -11,8 +11,8 @@
                         </h1>
                     </div>
                     
-                    @if(session('thongbao'))
-                        <div class="alert alert-danger">{{session('thongbao')}}</div>
+                    @if(session('notification'))
+                        <div class="alert alert-danger">{{session('notification')}}</div>
                     @endif
                     
                     <!-- /.col-lg-12 -->
@@ -28,29 +28,29 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($user as $u)
+                            @foreach($users as $user)
                             <tr class="odd gradeX" align="center">
-                                <td>{{$u->id}}</td>
-                                <td>{{$u->name}}</td>
-                                <td>{{$u->email}}</td>
+                                <td>{{$user->id}}</td>
+                                <td>{{$user->name}}</td>
+                                <td>{{$user->email}}</td>
                                 <td>
-                                    @if($u->quyen == 0)
+                                    @if($user->quyen == 0)
                                         {{"Thành viên"}}
-                                    @elseif($u->quyen == 1)
+                                    @elseif($user->quyen == 1)
                                         {{"Cộng tác viên"}}
                                     @else
                                         {{"Quản trị viên"}}
                                     @endif
                                 </td>
                                 <td>
-                                    @if($u->status == 1)
+                                    @if($user->status == 1)
                                         {{"Hoạt động"}}
                                     @else
                                         {{"Vô hiệu"}}
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="admin/user/sua/{{$u->id}}"><input type="button" class="btn btn-warning" id="btn_comment" value="Sửa"></a>
+                                    <a href="admin/user/edit/{{$user->id}}"><input type="button" class="btn btn-warning" id="btn_edit" value="Sửa"></a>
                                 </td>
                             </tr>
                             @endforeach

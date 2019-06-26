@@ -20,73 +20,73 @@
                             </div>
                         @endif
                         
-                        @if(session('thongbao'))
-                            <div class="alert alert-success">{{session('thongbao')}}</div>
+                        @if(session('notification'))
+                            <div class="alert alert-success">{{session('notification')}}</div>
                         @endif
 
-                        <form action="admin/tintuc/sua/{{$tintuc->id}}" method="POST" enctype="multipart/form-data">
+                        <form action="admin/news/edit/{{$news->id}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label>Thể lọai</label>
                                 <select class="form-control" name="TheLoai" id="TheLoai">
-                                    @foreach($theloai as $tl)
+                                    @foreach($categories as $category)
                                         <option 
-                                        @if($tintuc->loaitin->theloai->id == $tl->id)
+                                        @if($news->loaitin->theloai->id == $category->id)
                                             {{"selected"}}
                                         @endif
-                                        value="{{$tl->id}}">{{$tl->Ten}}</option>
+                                        value="{{$category->id}}">{{$category->Ten}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Loại tin</label>
                                 <select class="form-control" name="LoaiTin" id="LoaiTin">
-                                    @foreach($loaitin as $lt)
+                                    @foreach($types as $type)
                                         <option
-                                        @if($tintuc->loaitin->id == $lt->id)
+                                        @if($news->loaitin->id == $type->id)
                                             {{"selected"}}
                                         @endif 
-                                        value="{{$lt->id}}">{{$lt->Ten}}</option>
+                                        value="{{$type->id}}">{{$type->Ten}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Tiêu đề</label>
-                                <input class="form-control" name="TieuDe" value="{{$tintuc->TieuDe}}" required />
+                                <input class="form-control" name="TieuDe" value="{{$news->TieuDe}}" required />
                             </div>
                             <div class="form-group">
                                 <label>Tóm tắt</label>
-                                <input class="form-control" name="TomTat" value="{{$tintuc->TomTat}}" required />
+                                <input class="form-control" name="TomTat" value="{{$news->TomTat}}" required />
                             </div>
                             <div class="form-group">
                                 <label>Nội dung</label>
                                 <textarea id="demo" class="form-control ckeditor" name="NoiDung">
-                                    {{$tintuc->NoiDung}}
+                                    {{$news->NoiDung}}
                                 </textarea>
                             </div>
                             <div class="form-group">
                                 <label>Hình ảnh</label><br>
-                                <img class="img-rounded" width="300px" src="upload/tintuc/{{$tintuc->Hinh}}">
+                                <img class="img-rounded" width="300px" src="upload/tintuc/{{$news->Hinh}}">
                                 <input class="form-control" type="file" name="Hinh"/>
                             </div>
                             <label>Nổi bật: </label>
                             <label class="radio-inline">
                                 <input type="radio" name="NoiBat" value="1"
-                                @if($tintuc->NoiBat == 1)
+                                @if($news->NoiBat == 1)
                                     {{"checked"}}
                                 @endif
                                 >Có
                             </label>
                             <label class="radio-inline">
                                 <input type="radio" name="NoiBat" value="0"
-                                @if($tintuc->NoiBat == 0)
+                                @if($news->NoiBat == 0)
                                     {{"checked"}}
                                 @endif
                                 >Không
                             </label>
                             <br>
                             <button type="submit" class="btn btn-warning">Sửa</button>
-                            <a href="admin/tintuc/danhsach" class="btn btn-dark" role="button">Hủy</a>
+                            <a href="admin/news/list" class="btn btn-dark" role="button">Hủy</a>
                         <form>
                     </div>
                 </div>
@@ -111,14 +111,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($tintuc->comment as $cm)
+                            @foreach($news->comment as $cm)
                             <tr class="odd gradeX" align="center">
                                 <td>{{$cm->id}}</td>
                                 <td>{{$cm->user->name}}</td>
                                 <td>{{$cm->NoiDung}}</td>
                                 <td>{{$cm->created_at}}</td>
                                 <td>
-                                    <a href="admin/comment/xoa/{{$cm->id}}/{{$tintuc->id}}"><input type="button" class="btn btn-danger" id="btn_comment" value="Xóa"></a>
+                                    <a href="admin/comment/xoa/{{$cm->id}}/{{$news->id}}"><input type="button" class="btn btn-danger" id="btn_comment" value="Xóa"></a>
                                 </td>
                             </tr>
                             @endforeach

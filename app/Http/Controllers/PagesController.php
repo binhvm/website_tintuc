@@ -41,7 +41,7 @@ class PagesController extends Controller
         $tinnoibat = News::where('NoiBat', 1)->take(4)->get();
         $tinlienquan = News::where('idLoaiTin', $tintuc->idLoaiTin)->take(4)->get();
 
-        return view('pages.tintuc', compact('tintuc', 'tinnoibat', 'tinlienquan'));
+        return view('pages.news', compact('tintuc', 'tinnoibat', 'tinlienquan'));
     }
 
     public function getTimKiem(Request $request)

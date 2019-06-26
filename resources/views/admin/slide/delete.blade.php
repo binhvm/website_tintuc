@@ -20,11 +20,11 @@
                             </div>
                         @endif
                         
-                        @if(session('thongbao'))
-                            <div class="alert alert-success">{{session('thongbao')}}</div>
+                        @if(session('notification'))
+                            <div class="alert alert-success">{{session('notification')}}</div>
                         @endif
 
-                        <form action="admin/slide/xoa/{{$slide->id}}" method="POST" enctype="multipart/form-data">
+                        <form action="admin/slide/delete/{{$slide->id}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label>Tên slide</label>
@@ -44,7 +44,7 @@
                                 <input class="form-control" name="link" value="{{$slide->link}}" readonly>
                             </div>
                             <button type="submit" class="btn btn-danger">Xóa</button>
-                            <a href="admin/slide/danhsach" class="btn btn-dark" role="button">Hủy</a>
+                            <a href="admin/slide/lít" class="btn btn-dark" role="button">Hủy</a>
                         <form>
                     </div>
                 </div>
