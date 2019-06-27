@@ -8,7 +8,6 @@
             <div class="alert alert-danger">{{session('notification')}}</div>
         @endif
         <div class="row">
-
             <!-- Blog Post Content Column -->
             <div class="col-lg-9">
 
@@ -52,6 +51,7 @@
                 @endif
                 <p id="count-like" data-value="{{$countLike}}">Lượt thích: {{$countLike}}</p>
                 <hr>
+
                 <!-- Comments Form -->
                 @if(Auth::check())
                 <div class="well">
@@ -69,8 +69,6 @@
                 </div>
                 <hr>
                 @endif
-
-                <!-- Posted Comments -->
 
                 <!-- Comment -->
                 <div id="data-comment">
@@ -90,7 +88,6 @@
 
             <!-- Blog Sidebar Widgets Column -->
             <div class="col-md-3">
-
                 <div class="panel panel-default">
                     <div class="panel-heading"><b>Tin liên quan</b></div>
                     <div class="panel-body">
@@ -113,7 +110,8 @@
                         <!-- end item -->
                     </div>
                 </div>
-
+                
+                {{-- Hot news --}}
                 <div class="panel panel-default">
                     <div class="panel-heading"><b>Tin nổi bật</b></div>
                     <div class="panel-body">

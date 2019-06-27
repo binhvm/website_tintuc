@@ -97,11 +97,11 @@ class NewsController extends Controller
     		}
     		$name = $file->getClientOriginalName();
     		$Hinh = str_random(5)."_". $name;
-    		while(file_exists("upload/news/".$Hinh)){
+    		while(file_exists("upload/tintuc/".$Hinh)){
     			$Hinh = str_random(5)."_". $name;
     		}
-    		$file->move("upload/news", $Hinh);
-    		unlink("upload/news/".$news->Hinh);
+    		$file->move("upload/tintuc", $Hinh);
+    		unlink("upload/tintuc/".$news->Hinh);
     		$news->Hinh = $Hinh;
     	}
     	$news->save();
