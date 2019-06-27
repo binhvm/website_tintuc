@@ -20,14 +20,14 @@
                         @endif
                         
                         {{-- Hiển thị thông báo --}}
-                        @if(session('thongbao'))
-                            <div class="alert alert-success">{{session('thongbao')}}</div>
+                        @if(session('notification'))
+                            <div class="alert alert-success">{{session('notification')}}</div>
                         @endif
 						
                         <h1 class="page-header">Người dùng
                             <small>Thông tin tài khoản</small>
                         </h1>
-                        <form action="thongtintk/{{$user->id}}" method="POST">
+                        <form action="account/{{$user->id}}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label>Tên người dùng</label>
@@ -57,7 +57,7 @@
                                 @endif
                             </div>
                             <button type="submit" class="btn btn-warning">Thay đổi</button>
-                            <a href="trangchu" class="btn btn-dark" role="button">Hủy</a>
+                            <a href="homepage" class="btn btn-dark" role="button">Hủy</a>
                         <form>
                     </div>
                     <div class="col-lg-3">
