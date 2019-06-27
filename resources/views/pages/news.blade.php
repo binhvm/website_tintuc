@@ -31,12 +31,24 @@
                 </p>
 
                 {{-- Like button --}}
-                <form role="form" method="POST" id="form_like">
-                    @csrf
-                    <input type="hidden" name="idUser" id="idUser" value="{{Auth::user()->id}}">
-                    <input type="hidden" name="idTinTuc" id="idTinTuc" value="{{$news->id}}">
-                    <input type="submit" id="btn_like" class="btn btn-primary" value="Thích">
-                </form>
+                @if(Auth::check())
+                    <form role="form" method="POST" id="form_like">
+                        @csrf
+                        <?php
+                            $filter = $news->Like->filter(function($value, $key) {
+                                return $value->idUser == Auth::user()->id;
+                            })->count();
+                        ?>
+                        <input type="hidden" name="idUser" id="idUser" value="{{Auth::user()->id}}">
+                        <input type="hidden" name="idTinTuc" id="idTinTuc" value="{{$news->id}}">
+                        <input type="submit" id="btn_like"
+                        @if($filter)
+                            class="btn btn-danger" value="Không thích">
+                        @else
+                            class="btn btn-primary" value="Thích">
+                        @endif
+                    </form>
+                @endif
                 <hr>
 
                 <!-- Comments Form -->
