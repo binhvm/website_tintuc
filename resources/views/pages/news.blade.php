@@ -29,7 +29,8 @@
                 <p class="lead">
                 	{!! $news->NoiDung!!}
                 </p>
-
+                
+                <hr>
                 {{-- Like button --}}
                 @if(Auth::check())
                     <form role="form" method="POST" id="form_like">
@@ -49,8 +50,8 @@
                         @endif
                     </form>
                 @endif
+                <p id="count-like" data-value="{{$countLike}}">Lượt thích: {{$countLike}}</p>
                 <hr>
-
                 <!-- Comments Form -->
                 @if(Auth::check())
                 <div class="well">
@@ -155,7 +156,7 @@
         $(document).ready(function() {
             $('#form_comment').on('submit',function(event){
                 
-                //Không cho load trang
+                //Bỏ qua submit
                 event.preventDefault();
                 
                 //Lấy toàn bộ value cho vào biến form_data
@@ -191,7 +192,7 @@
         $(document).ready(function() {
             $('#form_like').on('submit',function(event){
                 
-                //Không cho load trang
+                //Bỏ qua submit
                 event.preventDefault();
                 
                 //Lấy toàn bộ value cho vào biến form_data
@@ -207,10 +208,17 @@
                     //Nhận kết quả trả về từ Controller
                     success:function(data){
                         console.log(data);
+                        var data_value = $("#count-like").attr("data-value")
+                        console.log(data_value)
                         if (data['status'] == 1) {
                             $("#btn_like").replaceWith('<input type="submit" id="btn_like" class="btn btn-danger" value="Không thích">');
+                            var likes = parseInt(data_value) + 1;
+                            $("#count-like").replaceWith('<p id="count-like" data-value="'+likes+'">Lượt thích: '+likes+'</p>');
+
                         }else{
                             $("#btn_like").replaceWith('<input type="submit" id="btn_like" class="btn btn-primary" value="Thích">');
+                            var likes=parseInt(data_value) - 1;
+                            $("#count-like").replaceWith('<p id="count-like" data-value="'+likes+'">Lượt thích: '+likes+'</p>');
                         }
                     }
                 });

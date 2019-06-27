@@ -7,6 +7,7 @@ use App\Category;
 use App\Slide;
 use App\Type;
 use App\News;
+use App\Like;
 use Auth;
 
 class PagesController extends Controller
@@ -37,11 +38,12 @@ class PagesController extends Controller
     }
     function getNews($id)
     {
+        $countLike = Like::where('idTinTuc', $id)->count();
         $news = News::findOrFail($id);
         $hotnews = News::where('NoiBat', 1)->take(4)->get();
         $tinlienquan = News::where('idLoaiTin', $news->idLoaiTin)->take(4)->get();
 
-        return view('pages.news', compact('news', 'hotnews', 'tinlienquan'));
+        return view('pages.news', compact('news', 'hotnews', 'tinlienquan', 'countLike'));
     }
 
     public function getSearch(Request $request)
