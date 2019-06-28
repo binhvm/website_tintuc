@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 use Illuminate\Support\Facades\Auth;
+
 use Closure;
 
 class AdminLoginMiddleware
@@ -16,15 +17,14 @@ class AdminLoginMiddleware
     public function handle($request, Closure $next)
     {
         if (Auth::check()) {
-            $user = Auth::user();
-            if ($user->quyen == 1 || $user->quyen == 2) {
+            if (Auth::user()->quyen > 0) {
                 return $next($request);
             }else{
 
-                return redirect()->back()->with('thongbao', 'Bạn không đủ quyền truy cập trang.');
+                return redirect()->back()->with('notification', 'Bạn không đủ quyền truy cập trang.');
             }
         }else{
-            return redirect('admin/dangnhap');
+            return redirect('admin/login');
         }
     }
 }
