@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\TinTuc;
+use App\News;
 use App\User;
 
 class Like extends Model
@@ -16,7 +16,7 @@ class Like extends Model
 
     public function tintuc()
     {
-    	return $this->belongsTo('App\TinTuc', 'idTinTuc', 'id');
+    	return $this->belongsTo('App\News', 'idTinTuc', 'id');
     }
 
     public function user()

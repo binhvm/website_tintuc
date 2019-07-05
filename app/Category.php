@@ -8,7 +8,7 @@ use App\News;
 
 class Category extends Model
 {
-    //
+    //protected $guarded = ['id'];
     protected $table = "theloai";
     protected $fillable = [
         'Ten', 'TenKhongDau',
