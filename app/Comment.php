@@ -8,7 +8,6 @@ use App\User;
 
 class Comment extends Model
 {
-    //
     protected $table = "comment";
     protected $fillable = [
         'idUser', 'idTinTuc', 'NoiDung',
@@ -16,11 +15,11 @@ class Comment extends Model
 
     public function tintuc()
     {
-    	return $this->belongsTo('App\News', 'idTinTuc', 'id');
+    	return $this->belongsTo(News::class, 'idTinTuc', 'id');
     }
 
     public function user()
     {
-    	return $this->belongsTo('App\User', 'idUser', 'id');
+    	return $this->belongsTo(User::class, 'idUser', 'id');
     }
 }

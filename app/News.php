@@ -5,10 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Type;
 use App\Comment;
+use App\Like;
 
 class News extends Model
 {
-    //
     protected $table = "tintuc";
     protected $fillable = [
         'TieuDe', 'TieuDeKhongDau', 'TomTat', 'NoiDung', 'Hinh', 'NoiBat', 'SoLuotXem', 'idLoaiTin', 'PheDuyet',
@@ -16,16 +16,16 @@ class News extends Model
 
     public function loaitin()
     {
-    	return $this->belongsTo('App\Type', 'idLoaiTin', 'id');
+    	return $this->belongsTo(Type::class, 'idLoaiTin', 'id');
     }
 
     public function comment()
     {
-    	return $this->hasMany('App\Comment', 'idTinTuc', 'id');
+    	return $this->hasMany(Comment::class, 'idTinTuc', 'id');
     }
 
     public function like()
     {
-        return $this->hasMany('App\Like', 'idTinTuc', 'id');
+        return $this->hasMany(Like::class, 'idTinTuc', 'id');
     }
 }

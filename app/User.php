@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Like;
+use App\Comment;
 
 class User extends Authenticatable
 {
@@ -40,11 +42,11 @@ class User extends Authenticatable
 
     public function comment()
     {
-        return $this->hasMany('App\Comment', 'idUser', 'id');
+        return $this->hasMany(Comment::class, 'idUser', 'id');
     }
 
     public function like()
     {
-        return $this->hasMany('App\Like', 'idUser', 'id');
+        return $this->hasMany(Like::class, 'idUser', 'id');
     }
 }

@@ -8,7 +8,6 @@ use App\User;
 
 class Like extends Model
 {
-    //
     protected $table = "likes";
     protected $fillable = [ 'idUser', 'idTinTuc', ];
     const liked = 1;
@@ -16,11 +15,11 @@ class Like extends Model
 
     public function tintuc()
     {
-    	return $this->belongsTo('App\News', 'idTinTuc', 'id');
+    	return $this->belongsTo(News::class, 'idTinTuc', 'id');
     }
 
     public function user()
     {
-    	return $this->belongsTo('App\User', 'idUser', 'id');
+    	return $this->belongsTo(User::class, 'idUser', 'id');
     }
 }

@@ -8,7 +8,6 @@ use App\News;
 
 class Category extends Model
 {
-    //protected $guarded = ['id'];
     protected $table = "theloai";
     protected $fillable = [
         'Ten', 'TenKhongDau',
@@ -16,11 +15,11 @@ class Category extends Model
 
     public function loaitin()
     {
-    	return $this->hasMany('App\Type', 'idTheLoai', 'id');
+    	return $this->hasMany(Type::class, 'idTheLoai', 'id');
     }
 
     public function tintuc()
     {
-    	return $this->hasManyThrough('App\News', 'App\Type', 'idTheLoai', 'idLoaiTin');
+    	return $this->hasManyThrough(News::class, Type::class, 'idTheLoai', 'idLoaiTin');
     }
 }

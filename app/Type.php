@@ -8,7 +8,6 @@ use App\News;
 
 class Type extends Model
 {
-    //
     protected $table = "loaitin";
     protected $fillable = [
         'idTheLoai', 'Ten', 'TenKhongDau',
@@ -16,11 +15,11 @@ class Type extends Model
 
     public function theloai()
     {
-    	return $this->belongsTo('App\Category', 'idTheLoai', 'id');
+    	return $this->belongsTo(Category::class, 'idTheLoai', 'id');
     }
 
     public function tintuc()
     {
-    	return $this->hasMany('App\News', 'idLoaiTin', 'id');
+    	return $this->hasMany(News::class, 'idLoaiTin', 'id');
     }
 }
